@@ -370,4 +370,5 @@ body.dark-mode footer {
 .dark-mode-toggle:hover {
     background-color: #004c60;
     transform: translateY(-5px);
+    transition: background-color 0.3s, transform 0.3s;
 }
