@@ -7,6 +7,11 @@ body {
     line-height: 1.6;
 }
 
+body[data-theme='dark'] {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
 header {
     background-color: #005f73;
     color: white;
@@ -15,6 +20,85 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+body[data-theme='dark'] header {
+    background-color: #222;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.theme-switch-wrapper em {
+    font-size: 1.2em;
+    transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+.theme-switch-wrapper:hover em {
+    font-size: 1.5em;
+    color: #ffcb77;
+}
+
+/* Dark Mode Styles */
+body[data-theme='dark'] .theme-switch-wrapper em {
+    color: #ffcb77;
 }
 
 .header-content {
@@ -58,6 +142,10 @@ nav ul li a:hover {
     color: #ffcb77;
 }
 
+body[data-theme='dark'] nav ul li a {
+    color: #ccc;
+}
+
 main {
     padding: 20px;
     animation: fadeIn 2s ease-in-out;
@@ -72,6 +160,11 @@ section {
     position: relative;
     overflow: hidden;
     animation: slideUp 1s ease-in-out;
+}
+
+body[data-theme='dark'] section {
+    background-color: #444;
+    color: #f4f4f4;
 }
 
 section::before {
@@ -97,6 +190,10 @@ h2 {
     font-weight: 600;
     margin-bottom: 20px;
     animation: slideRight 1.5s ease-in-out;
+}
+
+body[data-theme='dark'] h2 {
+    color: #ffcb77;
 }
 
 p {
@@ -143,6 +240,11 @@ p {
     transform: scale(1.05);
 }
 
+body[data-theme='dark'] .skill-item, 
+body[data-theme='dark'] .experience-item {
+    background-color: #555;
+}
+
 .links-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -167,6 +269,11 @@ p {
     transform: translateY(-5px);
 }
 
+body[data-theme='dark'] .link-item {
+    background-color: #666;
+    color: #ffcb77;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -183,6 +290,13 @@ form input, form textarea {
 
 form input:focus, form textarea:focus {
     border-color: #005f73;
+}
+
+body[data-theme='dark'] form input,
+body[data-theme='dark'] form textarea {
+    background-color: #555;
+    color: #f4f4f4;
+    border-color: #888;
 }
 
 form button {
