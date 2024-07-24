@@ -236,7 +236,7 @@ p {
     margin-bottom: 20px;
 }
 
-.skill-item:hover, .experience-item:hover {
+skill-item:hover, .experience-item:hover {
     transform: scale(1.05);
 }
 
