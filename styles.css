@@ -364,10 +364,10 @@ body.dark-mode footer {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 1.3s ease, transform 1.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .dark-mode-toggle:hover {
     background-color: #004c60;
-    transform: translateY(-5px);
+    transform: translateY(-500000px);
 }
