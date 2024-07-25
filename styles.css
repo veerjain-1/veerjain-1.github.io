@@ -210,19 +210,25 @@ p {
 .button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ffcb77;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
     color: white;
-    text-decoration: none;
+    background: linear-gradient(270deg, #3ac6f5, #22a2da, #3ac6f5);
+    border: 2px solid white;
     border-radius: 5px;
-    margin: 10px 0;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-    animation: slideLeft 1.5s ease-in-out;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-position 0.5s;
+    background-size: 600% 600%;
+    background-position: 0% 50%;
 }
 
 .button:hover {
-    background-color: #ff8800;
+    transform: scale(1.1);
+    background-position: 100% 50%;
 }
+
 
 .skills-grid {
     display: grid;
