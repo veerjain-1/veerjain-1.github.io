@@ -229,7 +229,6 @@ p {
     background-position: 100% 50%;
 }
 
-
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -360,16 +359,23 @@ body.dark-mode footer {
 
 /* Additional styles for the button */
 .dark-mode-toggle {
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #005f73;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
     color: white;
-    border: none;
+    background: linear-gradient(270deg, #3ac6f5, #22a2da, #3ac6f5);
+    border: 2px solid white;
     border-radius: 5px;
+    text-align: center;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s, background-position 0.5s;
+    background-size: 600% 600%;
+    background-position: 0% 50%;
 }
 
 .dark-mode-toggle:hover {
-    background-color: #004c60;
+    transform: scale(1.1);
+    background-position: 100% 50%;
 }
