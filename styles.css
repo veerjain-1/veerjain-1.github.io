@@ -161,7 +161,7 @@ p {
     gap: 20px;
 }
 
-.skill-item, .experience-item {
+.skill-item, .experience-item, .link-item {
     background-color: #e0fbfc;
     padding: 20px;
     border-radius: 10px;
@@ -169,45 +169,28 @@ p {
     transition: transform 0.3s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
     animation: fadeIn 2.5s ease-in-out;
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
 }
 
-.skill-item:hover, .experience-item:hover {
+.skill-item:hover, .experience-item:hover, .link-item:hover {
     transform: scale(1.05);
 }
 
 body.dark-mode .skill-item, 
-body.dark-mode .experience-item {
+body.dark-mode .experience-item,
+body.dark-mode .link-item {
     background-color: #2a2a2a;
     color: #e0e0e0;
 }
 
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    text-align: center;
-}
-
 .link-item {
     display: block;
-    padding: 20px;
-    background-color: #e0fbfc;
-    color: #005f73;
-    border-radius: 10px;
+    text-align: center;
     text-decoration: none;
     font-weight: 500;
     transition: background-color 0.5s ease-in-out, transform 0.3s ease, color 0.5s ease-in-out;
     animation: slideLeft 1.5s ease-in-out;
-}
-
-.link-item:hover {
-    background-color: #c3e5e6;
-    transform: translateY(-5px);
-}
-
-body.dark-mode .link-item {
-    background-color: #2a2a2a;
-    color: #ffcb77;
 }
 
 form {
@@ -318,4 +301,28 @@ body.dark-mode .btn-liquid {
     bottom: -50px;
     left: -50px;
     z-index: 1;
+}
+
+/* Liquid hover effect for tiles */
+.tile-liquid {
+    position: relative;
+    overflow: hidden;
+}
+
+.tile-liquid canvas {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+    left: -50px;
+    z-index: 1;
+}
+
+.tile-liquid:hover canvas {
+    animation: subtleLiquidEffect 0.6s forwards;
+}
+
+@keyframes subtleLiquidEffect {
+    from { transform: scale(0); }
+    to { transform: scale(3); }
 }
