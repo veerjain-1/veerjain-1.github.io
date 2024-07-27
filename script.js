@@ -135,11 +135,18 @@ $(function() {
             for (var i = 0; i < points.length; i++) {
                 var p = points[i];
                 var nextP = points[i + 1];
-                p.cx1 = (p.x + nextP.x) / 2;
-                p.cy1 = (p.y + nextP.y) / 2;
-                p.cx2 = (p.x + nextP.x) / 2;
-                p.cy2 = (p.y + nextP.y) / 2;
-                context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
+                if (nextP) {
+                    p.cx1 = (p.x + nextP.x) / 2;
+                    p.cy1 = (p.y + nextP.y) / 2;
+                    p.cx2 = (p.x + nextP.x) / 2;
+                    p.cy2 = (p.y + nextP.y) / 2;
+                    context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
+                } else {
+                    nextP = points[0];
+                    p.cx1 = (p.x + nextP.x) / 2;
+                    p.cy1 = (p.y + nextP.y) / 2;
+                    context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
+                }
             }
             context.fill();
         }
@@ -147,24 +154,3 @@ $(function() {
 
     initButton();
 });
-
-
-// Smooth scrolling for navigation links with offset
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        const offset = 300; // Adjust this value as needed
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = targetElement.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    });
-});
-
