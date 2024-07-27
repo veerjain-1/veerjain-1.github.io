@@ -64,16 +64,15 @@ $(function() {
     mouseSpeed();
 
     function initButton() {
-        var buttons = $('.btn-liquid');
-        buttons.each(function() {
-            var button = $(this);
-            var buttonWidth = button.width();
-            var buttonHeight = button.height();
+        var buttons = document.querySelectorAll('.btn-liquid');
+        buttons.forEach(function(button) {
+            var buttonWidth = button.offsetWidth;
+            var buttonHeight = button.offsetHeight;
 
-            $canvas = $('<canvas></canvas>');
-            button.append($canvas);
+            var $canvas = document.createElement('canvas');
+            button.appendChild($canvas);
 
-            canvas = $canvas.get(0);
+            canvas = $canvas;
             canvas.width = buttonWidth + 100;
             canvas.height = buttonHeight + 100;
             context = canvas.getContext('2d');
@@ -142,18 +141,18 @@ $(function() {
     function renderCanvas() {
         requestAnimationFrame(renderCanvas);
 
-        context.clearRect(0, 0, $canvas.width(), $canvas.height());
+        context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = '#fff';
-        context.fillRect(0, 0, $canvas.width(), $canvas.height());
+        context.fillRect(0, 0, canvas.width, canvas.height);
 
         for (var i = 0; i <= pointsA.length - 1; i++) {
             pointsA[i].move();
             pointsB[i].move();
         }
 
-        var gradientX = Math.min(Math.max(mouseX - $canvas.offset().left, 0), $canvas.width());
-        var gradientY = Math.min(Math.max(mouseY - $canvas.offset().top, 0), $canvas.height());
-        var distance = Math.sqrt(Math.pow(gradientX - $canvas.width() / 2, 2) + Math.pow(gradientY - $canvas.height() / 2, 2)) / Math.sqrt(Math.pow($canvas.width() / 2, 2) + Math.pow($canvas.height() / 2, 2));
+        var gradientX = Math.min(Math.max(mouseX - canvas.offsetLeft, 0), canvas.width);
+        var gradientY = Math.min(Math.max(mouseY - canvas.offsetTop, 0), canvas.height);
+        var distance = Math.sqrt(Math.pow(gradientX - canvas.width / 2, 2) + Math.pow(gradientY - canvas.height / 2, 2)) / Math.sqrt(Math.pow(canvas.width / 2, 2) + Math.pow(canvas.height / 2, 2));
 
         var gradient = context.createRadialGradient(gradientX, gradientY, 300 + (300 * distance), gradientX, gradientY, 0);
         gradient.addColorStop(0, '#007BFF');
