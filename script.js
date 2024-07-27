@@ -8,7 +8,7 @@ $(function() {
     // Attach dark mode toggle to the button
     document.querySelector('.btn-liquid').addEventListener('click', toggleDarkMode);
 
-    // Vars
+    // Liquid button animation
     var pointsA = [],
         pointsB = [],
         $canvas = null,
@@ -29,9 +29,6 @@ $(function() {
         mouseSpeedX = 0,
         mouseSpeedY = 0;
 
-    /**
-     * Get mouse direction
-     */
     function mouseDirection(e) {
         if (mouseX < e.pageX)
             mouseDirectionX = 1;
@@ -55,9 +52,6 @@ $(function() {
     }
     $(document).on('mousemove', mouseDirection);
 
-    /**
-     * Get mouse speed
-     */
     function mouseSpeed() {
         mouseSpeedX = mouseX - mouseLastX;
         mouseSpeedY = mouseY - mouseLastY;
@@ -69,18 +63,13 @@ $(function() {
     }
     mouseSpeed();
 
-    /**
-     * Init button
-     */
     function initButton() {
-        // Get buttons
         var buttons = $('.btn-liquid');
         buttons.each(function() {
             var button = $(this);
             var buttonWidth = button.width();
             var buttonHeight = button.height();
 
-            // Create canvas
             $canvas = $('<canvas></canvas>');
             button.append($canvas);
 
@@ -89,7 +78,6 @@ $(function() {
             canvas.height = buttonHeight + 100;
             context = canvas.getContext('2d');
 
-            // Add points
             var x = buttonHeight / 2;
             for (var j = 1; j < points; j++) {
                 addPoints((x + ((buttonWidth - buttonHeight) / points) * j), 0);
@@ -105,22 +93,15 @@ $(function() {
             addPoints(-buttonHeight / 10, buttonHeight / 2);
             addPoints(buttonHeight / 5, 0);
 
-            // Start render
             renderCanvas();
         });
     }
 
-    /**
-     * Add points
-     */
     function addPoints(x, y) {
         pointsA.push(new Point(x, y, 1));
         pointsB.push(new Point(x, y, 2));
     }
 
-    /**
-     * Point
-     */
     function Point(x, y, level) {
         this.x = this.ix = 50 + x;
         this.y = this.iy = 50 + y;
@@ -141,7 +122,6 @@ $(function() {
             dy = this.iy - relMouseY;
         var relDist = (1 - Math.sqrt((dx * dx) + (dy * dy)) / mouseDist);
 
-        // Move x
         if ((mouseDirectionX > 0 && relMouseX > this.x) || (mouseDirectionX < 0 && relMouseX < this.x)) {
             if (relDist > 0 && relDist < 1) {
                 this.vx = (mouseSpeedX / 4) * relDist;
@@ -150,7 +130,6 @@ $(function() {
         this.vx *= (1 - damping);
         this.x += this.vx;
 
-        // Move y
         if ((mouseDirectionY > 0 && relMouseY > this.y) || (mouseDirectionY < 0 && relMouseY < this.y)) {
             if (relDist > 0 && relDist < 1) {
                 this.vy = (mouseSpeedY / 4) * relDist;
@@ -160,25 +139,18 @@ $(function() {
         this.y += this.vy;
     };
 
-    /**
-     * Render canvas
-     */
     function renderCanvas() {
-        // rAF
         requestAnimationFrame(renderCanvas);
 
-        // Clear scene
         context.clearRect(0, 0, $canvas.width(), $canvas.height());
         context.fillStyle = '#fff';
         context.fillRect(0, 0, $canvas.width(), $canvas.height());
 
-        // Move points
         for (var i = 0; i <= pointsA.length - 1; i++) {
             pointsA[i].move();
             pointsB[i].move();
         }
 
-        // Create dynamic gradient
         var gradientX = Math.min(Math.max(mouseX - $canvas.offset().left, 0), $canvas.width());
         var gradientY = Math.min(Math.max(mouseY - $canvas.offset().top, 0), $canvas.height());
         var distance = Math.sqrt(Math.pow(gradientX - $canvas.width() / 2, 2) + Math.pow(gradientY - $canvas.height() / 2, 2)) / Math.sqrt(Math.pow($canvas.width() / 2, 2) + Math.pow($canvas.height() / 2, 2));
@@ -187,17 +159,14 @@ $(function() {
         gradient.addColorStop(0, '#007BFF');
         gradient.addColorStop(1, '#0056b3');
 
-        // Draw shapes
         var groups = [pointsA, pointsB];
 
         for (var j = 0; j <= 1; j++) {
             var points = groups[j];
 
             if (j == 0) {
-                // Background style
                 context.fillStyle = '#1CE2D8';
             } else {
-                // Foreground style
                 context.fillStyle = gradient;
             }
 
@@ -228,6 +197,5 @@ $(function() {
         }
     }
 
-    // Init buttons
     initButton();
 });
