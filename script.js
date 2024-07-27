@@ -73,38 +73,41 @@ $(function() {
      * Init button
      */
     function initButton() {
-        // Get button
-        var button = $('.btn-liquid');
-        var buttonWidth = button.width();
-        var buttonHeight = button.height();
+        // Get buttons
+        var buttons = $('.btn-liquid');
+        buttons.each(function() {
+            var button = $(this);
+            var buttonWidth = button.width();
+            var buttonHeight = button.height();
 
-        // Create canvas
-        $canvas = $('<canvas></canvas>');
-        button.append($canvas);
+            // Create canvas
+            $canvas = $('<canvas></canvas>');
+            button.append($canvas);
 
-        canvas = $canvas.get(0);
-        canvas.width = buttonWidth + 100;
-        canvas.height = buttonHeight + 100;
-        context = canvas.getContext('2d');
+            canvas = $canvas.get(0);
+            canvas.width = buttonWidth + 100;
+            canvas.height = buttonHeight + 100;
+            context = canvas.getContext('2d');
 
-        // Add points
-        var x = buttonHeight / 2;
-        for (var j = 1; j < points; j++) {
-            addPoints((x + ((buttonWidth - buttonHeight) / points) * j), 0);
-        }
-        addPoints(buttonWidth - buttonHeight / 5, 0);
-        addPoints(buttonWidth + buttonHeight / 10, buttonHeight / 2);
-        addPoints(buttonWidth - buttonHeight / 5, buttonHeight);
-        for (var j = points - 1; j > 0; j--) {
-            addPoints((x + ((buttonWidth - buttonHeight) / points) * j), buttonHeight);
-        }
-        addPoints(buttonHeight / 5, buttonHeight);
+            // Add points
+            var x = buttonHeight / 2;
+            for (var j = 1; j < points; j++) {
+                addPoints((x + ((buttonWidth - buttonHeight) / points) * j), 0);
+            }
+            addPoints(buttonWidth - buttonHeight / 5, 0);
+            addPoints(buttonWidth + buttonHeight / 10, buttonHeight / 2);
+            addPoints(buttonWidth - buttonHeight / 5, buttonHeight);
+            for (var j = points - 1; j > 0; j--) {
+                addPoints((x + ((buttonWidth - buttonHeight) / points) * j), buttonHeight);
+            }
+            addPoints(buttonHeight / 5, buttonHeight);
 
-        addPoints(-buttonHeight / 10, buttonHeight / 2);
-        addPoints(buttonHeight / 5, 0);
+            addPoints(-buttonHeight / 10, buttonHeight / 2);
+            addPoints(buttonHeight / 5, 0);
 
-        // Start render
-        renderCanvas();
+            // Start render
+            renderCanvas();
+        });
     }
 
     /**
@@ -225,6 +228,6 @@ $(function() {
         }
     }
 
-    // Init button
+    // Init buttons
     initButton();
 });
