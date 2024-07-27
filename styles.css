@@ -135,8 +135,8 @@ p {
 .button, .btn-liquid {
     display: inline-block;
     position: relative;
-    width: 140px; /* Smaller width */
-    height: 40px; /* Smaller height */
+    width: 140px;
+    height: 40px;
     border-radius: 20px;
     color: #fff;
     font: 700 14px/40px "Poppins", sans-serif;
@@ -145,24 +145,8 @@ p {
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
-    background: transparent; /* Ensure background is transparent to see the canvas */
-    z-index: 2; /* Ensure button content is above the canvas */
-}
-
-body .button::before, body .btn-liquid::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    bottom: -50px;
-    left: -50px;
-    background: linear-gradient(270deg, #007BFF, #0056b3, #007BFF);
-    animation: retroColors 5s infinite;
-    z-index: 1; /* Ensure gradient is below the button content */
-}
-
-body.dark-mode .button::before, body.dark-mode .btn-liquid::before {
-    background: linear-gradient(270deg, #FFD700, #FFA500, #FFD700);
+    background: transparent;
+    z-index: 2;
 }
 
 .btn-liquid canvas {
@@ -171,7 +155,7 @@ body.dark-mode .button::before, body.dark-mode .btn-liquid::before {
     right: -50px;
     bottom: -50px;
     left: -50px;
-    z-index: 1; /* Ensure canvas is below the button content */
+    z-index: 1;
 }
 
 .btn-liquid .inner {
@@ -241,12 +225,6 @@ body.dark-mode .link-item {
     to { transform: translateX(0); }
 }
 
-@keyframes retroColors {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 @keyframes glitch {
     0% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
     20% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
@@ -254,34 +232,4 @@ body.dark-mode .link-item {
     60% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
     80% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
     100% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
-}
-
-@keyframes ripple {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(4); opacity: 0; }
-}
-
-.skill-item:hover::after, .experience-item:hover::after, .link-item:hover::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%; /* More apparent ripple */
-    height: 300%; /* More apparent ripple */
-    background: rgba(255, 255, 255, 0.6); /* More apparent ripple */
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: ripple 0.6s linear;
-    pointer-events: none;
-}
-
-#connect .links-grid {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.contact-info {
-    text-align: center;
-    margin-top: 20px;
 }
