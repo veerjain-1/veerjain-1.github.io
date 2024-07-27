@@ -145,19 +145,24 @@ p {
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
+    background: transparent; /* Ensure background is transparent to see the canvas */
+    z-index: 2; /* Ensure button content is above the canvas */
+}
+
+body .button::before, body .btn-liquid::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+    left: -50px;
     background: linear-gradient(270deg, #007BFF, #0056b3, #007BFF);
     animation: retroColors 5s infinite;
+    z-index: 1; /* Ensure gradient is below the button content */
 }
 
-body.dark-mode .button, body.dark-mode .btn-liquid {
+body.dark-mode .button::before, body.dark-mode .btn-liquid::before {
     background: linear-gradient(270deg, #FFD700, #FFA500, #FFD700);
-}
-
-.button .inner, .btn-liquid .inner {
-    position: relative;
-    z-index: 2;
-    text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF;
-    animation: glitch 1s infinite;
 }
 
 .btn-liquid canvas {
@@ -166,7 +171,14 @@ body.dark-mode .button, body.dark-mode .btn-liquid {
     right: -50px;
     bottom: -50px;
     left: -50px;
-    z-index: 1;
+    z-index: 1; /* Ensure canvas is below the button content */
+}
+
+.btn-liquid .inner {
+    position: relative;
+    z-index: 2;
+    text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF;
+    animation: glitch 1s infinite;
 }
 
 .skills-grid {
