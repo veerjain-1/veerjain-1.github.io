@@ -175,6 +175,7 @@ p {
 
 .skill-item:hover, .experience-item:hover, .link-item:hover {
     transform: scale(1.05);
+    background-color: #f0f0f0;
 }
 
 body.dark-mode .skill-item, 
@@ -303,26 +304,21 @@ body.dark-mode .btn-liquid {
     z-index: 1;
 }
 
-/* Liquid hover effect for tiles */
-.tile-liquid {
-    position: relative;
-    overflow: hidden;
-}
-
-.tile-liquid canvas {
+/* Subtle liquid hover effect for tiles */
+.skill-item::before, .experience-item::before, .link-item::before {
+    content: '';
     position: absolute;
-    top: -50px;
-    right: -50px;
-    bottom: -50px;
-    left: -50px;
-    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    transform: scale(0);
+    transition: transform 0.6s ease-in-out;
+    pointer-events: none;
 }
 
-.tile-liquid:hover canvas {
-    animation: subtleLiquidEffect 0.6s forwards;
-}
-
-@keyframes subtleLiquidEffect {
-    from { transform: scale(0); }
-    to { transform: scale(3); }
+.skill-item:hover::before, .experience-item:hover::before, .link-item:hover::before {
+    transform: scale(1);
 }
