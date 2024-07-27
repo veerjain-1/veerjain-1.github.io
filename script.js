@@ -8,7 +8,7 @@ $(function() {
     // Attach dark mode toggle to the button
     document.querySelector('.btn-liquid').addEventListener('click', toggleDarkMode);
 
-    // Liquid effect for button
+    // Vars
     var pointsA = [],
         pointsB = [],
         $canvas = null,
@@ -16,9 +16,62 @@ $(function() {
         context = null,
         points = 8,
         viscosity = 20,
-        damping = 0.05;
+        mouseDist = 70,
+        damping = 0.05,
+        mouseX = 0,
+        mouseY = 0,
+        relMouseX = 0,
+        relMouseY = 0,
+        mouseLastX = 0,
+        mouseLastY = 0,
+        mouseDirectionX = 0,
+        mouseDirectionY = 0,
+        mouseSpeedX = 0,
+        mouseSpeedY = 0;
 
-    // Init button
+    /**
+     * Get mouse direction
+     */
+    function mouseDirection(e) {
+        if (mouseX < e.pageX)
+            mouseDirectionX = 1;
+        else if (mouseX > e.pageX)
+            mouseDirectionX = -1;
+        else
+            mouseDirectionX = 0;
+
+        if (mouseY < e.pageY)
+            mouseDirectionY = 1;
+        else if (mouseY > e.pageY)
+            mouseDirectionY = -1;
+        else
+            mouseDirectionY = 0;
+
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+
+        relMouseX = (mouseX - $canvas.offset().left);
+        relMouseY = (mouseY - $canvas.offset().top);
+    }
+    $(document).on('mousemove', mouseDirection);
+
+    /**
+     * Get mouse speed
+     */
+    function mouseSpeed() {
+        mouseSpeedX = mouseX - mouseLastX;
+        mouseSpeedY = mouseY - mouseLastY;
+
+        mouseLastX = mouseX;
+        mouseLastY = mouseY;
+
+        setTimeout(mouseSpeed, 50);
+    }
+    mouseSpeed();
+
+    /**
+     * Init button
+     */
     function initButton() {
         // Get button
         var button = $('.btn-liquid');
@@ -46,6 +99,7 @@ $(function() {
             addPoints((x + ((buttonWidth - buttonHeight) / points) * j), buttonHeight);
         }
         addPoints(buttonHeight / 5, buttonHeight);
+
         addPoints(-buttonHeight / 10, buttonHeight / 2);
         addPoints(buttonHeight / 5, 0);
 
@@ -53,13 +107,17 @@ $(function() {
         renderCanvas();
     }
 
-    // Add points
+    /**
+     * Add points
+     */
     function addPoints(x, y) {
         pointsA.push(new Point(x, y, 1));
         pointsB.push(new Point(x, y, 2));
     }
 
-    // Point constructor
+    /**
+     * Point
+     */
     function Point(x, y, level) {
         this.x = this.ix = 50 + x;
         this.y = this.iy = 50 + y;
@@ -76,14 +134,32 @@ $(function() {
         this.vx += (this.ix - this.x) / (viscosity * this.level);
         this.vy += (this.iy - this.y) / (viscosity * this.level);
 
+        var dx = this.ix - relMouseX,
+            dy = this.iy - relMouseY;
+        var relDist = (1 - Math.sqrt((dx * dx) + (dy * dy)) / mouseDist);
+
+        // Move x
+        if ((mouseDirectionX > 0 && relMouseX > this.x) || (mouseDirectionX < 0 && relMouseX < this.x)) {
+            if (relDist > 0 && relDist < 1) {
+                this.vx = (mouseSpeedX / 4) * relDist;
+            }
+        }
         this.vx *= (1 - damping);
         this.x += this.vx;
 
+        // Move y
+        if ((mouseDirectionY > 0 && relMouseY > this.y) || (mouseDirectionY < 0 && relMouseY < this.y)) {
+            if (relDist > 0 && relDist < 1) {
+                this.vy = (mouseSpeedY / 4) * relDist;
+            }
+        }
         this.vy *= (1 - damping);
         this.y += this.vy;
     };
 
-    // Render canvas
+    /**
+     * Render canvas
+     */
     function renderCanvas() {
         // rAF
         requestAnimationFrame(renderCanvas);
@@ -149,6 +225,6 @@ $(function() {
         }
     }
 
-    // Initialize button
+    // Init button
     initButton();
 });
