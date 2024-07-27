@@ -304,7 +304,7 @@ body.dark-mode .btn-liquid {
     z-index: 1;
 }
 
-/* Subtle liquid hover effect for tiles */
+/* Subtle liquid hover effect for tiles
 .skill-item::before, .experience-item::before, .link-item::before {
     content: '';
     position: absolute;
@@ -319,6 +319,8 @@ body.dark-mode .btn-liquid {
     pointer-events: none;
 }
 
+
 .skill-item:hover::before, .experience-item:hover::before, .link-item:hover::before {
     transform: scale(1);
 }
+*/
