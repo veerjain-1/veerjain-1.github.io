@@ -22,6 +22,9 @@ header {
     top: 0;
     z-index: 1000;
     transition: background-color 0.5s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 body.dark-mode header {
@@ -51,11 +54,12 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 10px 0;
+    display: flex;
+    gap: 10px;
 }
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
 }
 
 nav ul li a {
@@ -133,26 +137,41 @@ p {
     transition: color 0.5s ease-in-out;
 }
 
-.button {
+.button, .btn-liquid {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-    background: linear-gradient(270deg, #3ac6f5, #22a2da, #3ac6f5);
-    border: 2px solid white;
-    border-radius: 5px;
+    position: relative;
+    width: 140px; /* Smaller width */
+    height: 40px; /* Smaller height */
+    border-radius: 20px;
+    color: #fff;
+    font: 700 14px/40px "Poppins", sans-serif;
+    letter-spacing: 0.05em;
     text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s, background-position 0.5s;
-    background-size: 600% 600%;
-    background-position: 0% 50%;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    background: linear-gradient(270deg, #007BFF, #0056b3, #007BFF);
+    animation: retroColors 5s infinite;
 }
 
-.button:hover {
-    transform: scale(1.1);
-    background-position: 100% 50%;
+body.dark-mode .button, body.dark-mode .btn-liquid {
+    background: linear-gradient(270deg, #FFD700, #FFA500, #FFD700);
+}
+
+.button .inner, .btn-liquid .inner {
+    position: relative;
+    z-index: 2;
+    text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF;
+    animation: glitch 1s infinite;
+}
+
+.btn-liquid canvas {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+    left: -50px;
+    z-index: 1;
 }
 
 .skills-grid {
@@ -171,11 +190,12 @@ p {
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .skill-item:hover, .experience-item:hover, .link-item:hover {
     transform: scale(1.05);
-    background-color: #f0f0f0;
+    z-index: 2;
 }
 
 body.dark-mode .skill-item, 
@@ -267,60 +287,42 @@ body.dark-mode footer {
     to { transform: translateX(0); }
 }
 
-.btn-liquid {
-    display: inline-block;
-    position: relative;
-    width: 180px;  /* Smaller width */
-    height: 50px;  /* Smaller height */
-    border-radius: 25px;
-    color: #fff;
-    font: 700 14px/50px "Poppins", sans-serif;
-    letter-spacing: 0.05em;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    background: linear-gradient(270deg, #007BFF, #0056b3, #007BFF);
-    animation: retroColors 5s infinite;
+@keyframes retroColors {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-body.dark-mode .btn-liquid {
-    background: linear-gradient(270deg, #FFD700, #FFA500, #FFD700);
+@keyframes glitch {
+    0% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
+    20% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
+    40% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
+    60% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
+    80% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
+    100% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
 }
 
-.btn-liquid .inner {
-    position: relative;
-    z-index: 2;
-    text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF;
-    animation: glitch 1s infinite;
+@keyframes ripple {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(4); opacity: 0; }
 }
 
-.btn-liquid canvas {
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    bottom: -50px;
-    left: -50px;
-    z-index: 1;
-}
-
-/* Subtle liquid hover effect for tiles
-.skill-item::before, .experience-item::before, .link-item::before {
+.skill-item:hover::after, .experience-item:hover::after, .link-item:hover::after {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    transform: scale(0);
-    transition: transform 0.6s ease-in-out;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s linear;
     pointer-events: none;
 }
 
-
-.skill-item:hover::before, .experience-item:hover::before, .link-item:hover::before {
-    transform: scale(1);
+#connect .links-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
-*/
