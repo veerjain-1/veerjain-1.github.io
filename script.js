@@ -1,13 +1,12 @@
 $(function() {
-    // Dark mode toggle function
+     // Dark mode toggle function
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
     }
 
     // Attach dark mode toggle to the button
     document.querySelector('.btn-liquid').addEventListener('click', toggleDarkMode);
-
-    // Liquid button animation
+    // Vars
     var pointsA = [],
         pointsB = [],
         $canvas = null,
@@ -197,3 +196,4 @@ $(function() {
 
     initButton();
 });
+
