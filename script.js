@@ -184,8 +184,8 @@ $(function() {
         var distance = Math.sqrt(Math.pow(gradientX - $canvas.width() / 2, 2) + Math.pow(gradientY - $canvas.height() / 2, 2)) / Math.sqrt(Math.pow($canvas.width() / 2, 2) + Math.pow($canvas.height() / 2, 2));
 
         var gradient = context.createRadialGradient(gradientX, gradientY, 300 + (300 * distance), gradientX, gradientY, 0);
-        gradient.addColorStop(0, '#102ce5');
-        gradient.addColorStop(1, '#E406D6');
+        gradient.addColorStop(0, '#007BFF');
+        gradient.addColorStop(1, '#0056b3');
 
         // Draw shapes
         var groups = [pointsA, pointsB];
