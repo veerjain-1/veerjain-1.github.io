@@ -358,24 +358,40 @@ body.dark-mode footer {
 }
 
 /* Additional styles for the button */
+@keyframes retroColors {
+    0% { background-color: #FF0000; color: #FFFFFF; }
+    20% { background-color: #FF7F00; color: #000000; }
+    40% { background-color: #FFFF00; color: #000000; }
+    60% { background-color: #00FF00; color: #000000; }
+    80% { background-color: #0000FF; color: #FFFFFF; }
+    100% { background-color: #8B00FF; color: #FFFFFF; }
+}
+
+@keyframes glitch {
+    0% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
+    25% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
+    50% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
+    75% { text-shadow: 2px 2px 0 #FF00FF, -2px -2px 0 #00FFFF; }
+    100% { text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF; }
+}
+
 .dark-mode-toggle {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 15px 30px;
+    font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    color: white;
-    background: linear-gradient(270deg, #3ac6f5, #22a2da, #3ac6f5);
-    border: 2px solid white;
-    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s, background-position 0.5s;
-    background-size: 600% 600%;
-    background-position: 0% 50%;
+    transition: transform 0.2s;
+    animation: retroColors 5s infinite, glitch 1s infinite;
 }
 
 .dark-mode-toggle:hover {
-    transform: scale(1.1);
-    background-position: 100% 50%;
+    transform: scale(1.2);
 }
+
