@@ -161,8 +161,6 @@ p {
 .btn-liquid .inner {
     position: relative;
     z-index: 2;
-    text-shadow: -2px -2px 0 #FF00FF, 2px 2px 0 #00FFFF;
-    animation: glitch 1s infinite;
 }
 
 .skills-grid {
