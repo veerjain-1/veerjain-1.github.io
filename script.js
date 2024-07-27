@@ -1,27 +1,3 @@
-function toggleDarkMode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-}
-
-// Smooth scrolling for navigation links with offset
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        const offset = 300; // Adjust this value as needed
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = targetElement.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    });
-});
-
 $(function() {
     // Vars
     var pointsA = [],
@@ -99,31 +75,25 @@ $(function() {
         button.append($canvas);
 
         canvas = $canvas.get(0);
-        canvas.width = buttonWidth+100;
-        canvas.height = buttonHeight+100;
+        canvas.width = buttonWidth + 100;
+        canvas.height = buttonHeight + 100;
         context = canvas.getContext('2d');
 
         // Add points
-
-        var x = buttonHeight/2;
-        for(var j = 1; j < points; j++) {
-            addPoints((x+((buttonWidth-buttonHeight)/points)*j), 0);
+        var x = buttonHeight / 2;
+        for (var j = 1; j < points; j++) {
+            addPoints((x + ((buttonWidth - buttonHeight) / points) * j), 0);
         }
-        addPoints(buttonWidth-buttonHeight/5, 0);
-        addPoints(buttonWidth+buttonHeight/10, buttonHeight/2);
-        addPoints(buttonWidth-buttonHeight/5, buttonHeight);
-        for(var j = points-1; j > 0; j--) {
-            addPoints((x+((buttonWidth-buttonHeight)/points)*j), buttonHeight);
+        addPoints(buttonWidth - buttonHeight / 5, 0);
+        addPoints(buttonWidth + buttonHeight / 10, buttonHeight / 2);
+        addPoints(buttonWidth - buttonHeight / 5, buttonHeight);
+        for (var j = points - 1; j > 0; j--) {
+            addPoints((x + ((buttonWidth - buttonHeight) / points) * j), buttonHeight);
         }
-        addPoints(buttonHeight/5, buttonHeight);
+        addPoints(buttonHeight / 5, buttonHeight);
 
-        addPoints(-buttonHeight/10, buttonHeight/2);
-        addPoints(buttonHeight/5, 0);
-        // addPoints(x, 0);
-        // addPoints(0, buttonHeight/2);
-
-        // addPoints(0, buttonHeight/2);
-        // addPoints(buttonHeight/4, 0);
+        addPoints(-buttonHeight / 10, buttonHeight / 2);
+        addPoints(buttonHeight / 5, 0);
 
         // Start render
         renderCanvas();
@@ -141,24 +111,24 @@ $(function() {
      * Point
      */
     function Point(x, y, level) {
-      this.x = this.ix = 50+x;
-      this.y = this.iy = 50+y;
-      this.vx = 0;
-      this.vy = 0;
-      this.cx1 = 0;
-      this.cy1 = 0;
-      this.cx2 = 0;
-      this.cy2 = 0;
-      this.level = level;
+        this.x = this.ix = 50 + x;
+        this.y = this.iy = 50 + y;
+        this.vx = 0;
+        this.vy = 0;
+        this.cx1 = 0;
+        this.cy1 = 0;
+        this.cx2 = 0;
+        this.cy2 = 0;
+        this.level = level;
     }
 
-    Point.prototype.move = function() {
-        this.vx += (this.ix - this.x) / (viscosity*this.level);
-        this.vy += (this.iy - this.y) / (viscosity*this.level);
+    Point.prototype.move = function () {
+        this.vx += (this.ix - this.x) / (viscosity * this.level);
+        this.vy += (this.iy - this.y) / (viscosity * this.level);
 
         var dx = this.ix - relMouseX,
             dy = this.iy - relMouseY;
-        var relDist = (1-Math.sqrt((dx * dx) + (dy * dy))/mouseDist);
+        var relDist = (1 - Math.sqrt((dx * dx) + (dy * dy)) / mouseDist);
 
         // Move x
         if ((mouseDirectionX > 0 && relMouseX > this.x) || (mouseDirectionX < 0 && relMouseX < this.x)) {
@@ -178,7 +148,6 @@ $(function() {
         this.vy *= (1 - damping);
         this.y += this.vy;
     };
-
 
     /**
      * Render canvas
@@ -201,14 +170,14 @@ $(function() {
         // Create dynamic gradient
         var gradientX = Math.min(Math.max(mouseX - $canvas.offset().left, 0), $canvas.width());
         var gradientY = Math.min(Math.max(mouseY - $canvas.offset().top, 0), $canvas.height());
-        var distance = Math.sqrt(Math.pow(gradientX - $canvas.width()/2, 2) + Math.pow(gradientY - $canvas.height()/2, 2)) / Math.sqrt(Math.pow($canvas.width()/2, 2) + Math.pow($canvas.height()/2, 2));
+        var distance = Math.sqrt(Math.pow(gradientX - $canvas.width() / 2, 2) + Math.pow(gradientY - $canvas.height() / 2, 2)) / Math.sqrt(Math.pow($canvas.width() / 2, 2) + Math.pow($canvas.height() / 2, 2));
 
-        var gradient = context.createRadialGradient(gradientX, gradientY, 300+(300*distance), gradientX, gradientY, 0);
+        var gradient = context.createRadialGradient(gradientX, gradientY, 300 + (300 * distance), gradientX, gradientY, 0);
         gradient.addColorStop(0, '#102ce5');
         gradient.addColorStop(1, '#E406D6');
 
         // Draw shapes
-        var groups = [pointsA, pointsB]
+        var groups = [pointsA, pointsB];
 
         for (var j = 0; j <= 1; j++) {
             var points = groups[j];
@@ -227,19 +196,19 @@ $(function() {
             for (var i = 0; i < points.length; i++) {
                 var p = points[i];
                 var nextP = points[i + 1];
-                var val = 30*0.552284749831;
+                var val = 30 * 0.552284749831;
 
                 if (nextP != undefined) {
-                    p.cx1 = (p.x+nextP.x)/2;
-                    p.cy1 = (p.y+nextP.y)/2;
-                    p.cx2 = (p.x+nextP.x)/2;
-                    p.cy2 = (p.y+nextP.y)/2;
+                    p.cx1 = (p.x + nextP.x) / 2;
+                    p.cy1 = (p.y + nextP.y) / 2;
+                    p.cx2 = (p.x + nextP.x) / 2;
+                    p.cy2 = (p.y + nextP.y) / 2;
 
                     context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
                 } else {
                     nextP = points[0];
-                    p.cx1 = (p.x+nextP.x)/2;
-                    p.cy1 = (p.y+nextP.y)/2;
+                    p.cx1 = (p.x + nextP.x) / 2;
+                    p.cy1 = (p.y + nextP.y) / 2;
 
                     context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
                 }
@@ -272,5 +241,39 @@ $(function() {
 
     // Init
     initButton();
-});
 
+    // Initialize tile effect
+    $('.skill-item, .experience-item, .link-item').each(function () {
+        var tile = $(this);
+        var tileWidth = tile.width();
+        var tileHeight = tile.height();
+
+        // Create canvas
+        $canvas = $('<canvas></canvas>');
+        tile.append($canvas);
+
+        canvas = $canvas.get(0);
+        canvas.width = tileWidth + 100;
+        canvas.height = tileHeight + 100;
+        context = canvas.getContext('2d');
+
+        // Add points
+        var x = tileHeight / 2;
+        for (var j = 1; j < points; j++) {
+            addPoints((x + ((tileWidth - tileHeight) / points) * j), 0);
+        }
+        addPoints(tileWidth - tileHeight / 5, 0);
+        addPoints(tileWidth + tileHeight / 10, tileHeight / 2);
+        addPoints(tileWidth - tileHeight / 5, tileHeight);
+        for (var j = points - 1; j > 0; j--) {
+            addPoints((x + ((tileWidth - tileHeight) / points) * j), tileHeight);
+        }
+        addPoints(tileHeight / 5, tileHeight);
+
+        addPoints(-tileHeight / 10, tileHeight / 2);
+        addPoints(tileHeight / 5, 0);
+
+        // Render canvas
+        renderCanvas();
+    });
+});
