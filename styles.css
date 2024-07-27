@@ -196,7 +196,7 @@ body.dark-mode .link-item {
     color: #e0e0e0;
 }
 
-.link-item {
+.link-item (
     display: block;
     text-align: center;
     text-decoration: none;
