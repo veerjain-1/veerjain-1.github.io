@@ -97,7 +97,6 @@ input:checked + .slider:before {
     color: #ffcb77;
 }
 
-/* Dark Mode Styles */
 body.dark-mode .theme-switch-wrapper em {
     color: #ffcb77;
 }
@@ -394,4 +393,3 @@ body.dark-mode footer {
 .dark-mode-toggle:hover {
     transform: scale(1.2);
 }
-
