@@ -8,6 +8,17 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+.resized-image {
+    width: 100px;
+    hieght: 100px;
+    object-fit: cover;
+}
+
+.image-container {
+    display: flex;
+    gap: 10px;
+}
+
 .dark-mode {
     background-color: #121212;
     color: #e0e0e0;
