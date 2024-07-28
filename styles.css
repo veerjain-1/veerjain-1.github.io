@@ -149,6 +149,30 @@ p {
     z-index: 2;
 }
 
+.btn-liquid {
+    display: inline-block;
+    position: relative;
+    width: 240px;
+    height: 60px;
+    border-radius: 27px;
+    color: #fff;
+    font: 700 14px/60px "Droid Sans", sans-serif;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #1e90ff; /* Blueish color */
+    z-index: 2;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body.dark-mode .btn-liquid {
+    background-color: #ffcb77;
+    color: #121212;
+}
+
 .btn-liquid canvas {
     position: absolute;
     top: -50px;
@@ -161,6 +185,10 @@ p {
 .btn-liquid .inner {
     position: relative;
     z-index: 2;
+}
+
+body.dark-mode .btn-liquid {
+    animation: glitch 1s infinite;
 }
 
 .skills-grid {
@@ -194,7 +222,7 @@ body.dark-mode .link-item {
     color: #e0e0e0;
 }
 
-.link-item (
+.link-item {
     display: block;
     text-align: center;
     text-decoration: none;
