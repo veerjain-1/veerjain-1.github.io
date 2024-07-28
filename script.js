@@ -1,4 +1,4 @@
-$(function() {
+
      // Dark mode toggle function
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
@@ -6,16 +6,19 @@ $(function() {
 
     // Attach dark mode toggle to the button
     document.querySelector('.btn-liquid').addEventListener('click', toggleDarkMode);
-    // Vars
+$(function() {
+ // Vars
     var pointsA = [],
         pointsB = [],
         $canvas = null,
         canvas = null,
         context = null,
+        vars = null,
         points = 8,
         viscosity = 20,
         mouseDist = 70,
         damping = 0.05,
+        showIndicators = false,
         mouseX = 0,
         mouseY = 0,
         relMouseX = 0,
@@ -62,36 +65,34 @@ $(function() {
     mouseSpeed();
 
     function initButton() {
-        var buttons = document.querySelectorAll('.btn-liquid');
-        buttons.forEach(function(button) {
-            var buttonWidth = button.offsetWidth;
-            var buttonHeight = button.offsetHeight;
+        var button = $('.btn-liquid');
+        var buttonWidth = button.width();
+        var buttonHeight = button.height();
 
-            var $canvas = document.createElement('canvas');
-            button.appendChild($canvas);
+        $canvas = $('<canvas></canvas>');
+        button.append($canvas);
 
-            canvas = $canvas;
-            canvas.width = buttonWidth + 100;
-            canvas.height = buttonHeight + 100;
-            context = canvas.getContext('2d');
+        canvas = $canvas.get(0);
+        canvas.width = buttonWidth+100;
+        canvas.height = buttonHeight+100;
+        context = canvas.getContext('2d');
 
-            var x = buttonHeight / 2;
-            for (var j = 1; j < points; j++) {
-                addPoints((x + ((buttonWidth - buttonHeight) / points) * j), 0);
-            }
-            addPoints(buttonWidth - buttonHeight / 5, 0);
-            addPoints(buttonWidth + buttonHeight / 10, buttonHeight / 2);
-            addPoints(buttonWidth - buttonHeight / 5, buttonHeight);
-            for (var j = points - 1; j > 0; j--) {
-                addPoints((x + ((buttonWidth - buttonHeight) / points) * j), buttonHeight);
-            }
-            addPoints(buttonHeight / 5, buttonHeight);
+        var x = buttonHeight/2;
+        for(var j = 1; j < points; j++) {
+            addPoints((x+((buttonWidth-buttonHeight)/points)*j), 0);
+        }
+        addPoints(buttonWidth-buttonHeight/5, 0);
+        addPoints(buttonWidth+buttonHeight/10, buttonHeight/2);
+        addPoints(buttonWidth-buttonHeight/5, buttonHeight);
+        for(var j = points-1; j > 0; j--) {
+            addPoints((x+((buttonWidth-buttonHeight)/points)*j), buttonHeight);
+        }
+        addPoints(buttonHeight/5, buttonHeight);
 
-            addPoints(-buttonHeight / 10, buttonHeight / 2);
-            addPoints(buttonHeight / 5, 0);
+        addPoints(-buttonHeight/10, buttonHeight/2);
+        addPoints(buttonHeight/5, 0);
 
-            renderCanvas();
-        });
+        renderCanvas();
     }
 
     function addPoints(x, y) {
@@ -100,8 +101,8 @@ $(function() {
     }
 
     function Point(x, y, level) {
-        this.x = this.ix = 50 + x;
-        this.y = this.iy = 50 + y;
+        this.x = this.ix = 50+x;
+        this.y = this.iy = 50+y;
         this.vx = 0;
         this.vy = 0;
         this.cx1 = 0;
@@ -112,12 +113,12 @@ $(function() {
     }
 
     Point.prototype.move = function() {
-        this.vx += (this.ix - this.x) / (viscosity * this.level);
-        this.vy += (this.iy - this.y) / (viscosity * this.level);
+        this.vx += (this.ix - this.x) / (viscosity*this.level);
+        this.vy += (this.iy - this.y) / (viscosity*this.level);
 
         var dx = this.ix - relMouseX,
             dy = this.iy - relMouseY;
-        var relDist = (1 - Math.sqrt((dx * dx) + (dy * dy)) / mouseDist);
+        var relDist = (1-Math.sqrt((dx * dx) + (dy * dy))/mouseDist);
 
         if ((mouseDirectionX > 0 && relMouseX > this.x) || (mouseDirectionX < 0 && relMouseX < this.x)) {
             if (relDist > 0 && relDist < 1) {
@@ -137,26 +138,26 @@ $(function() {
     };
 
     function renderCanvas() {
-        requestAnimationFrame(renderCanvas);
+        rafID = requestAnimationFrame(renderCanvas);
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, $canvas.width(), $canvas.height());
         context.fillStyle = '#fff';
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillRect(0, 0, $canvas.width(), $canvas.height());
 
         for (var i = 0; i <= pointsA.length - 1; i++) {
             pointsA[i].move();
             pointsB[i].move();
         }
 
-        var gradientX = Math.min(Math.max(mouseX - canvas.offsetLeft, 0), canvas.width);
-        var gradientY = Math.min(Math.max(mouseY - canvas.offsetTop, 0), canvas.height);
-        var distance = Math.sqrt(Math.pow(gradientX - canvas.width / 2, 2) + Math.pow(gradientY - canvas.height / 2, 2)) / Math.sqrt(Math.pow(canvas.width / 2, 2) + Math.pow(canvas.height / 2, 2));
+        var gradientX = Math.min(Math.max(mouseX - $canvas.offset().left, 0), $canvas.width());
+        var gradientY = Math.min(Math.max(mouseY - $canvas.offset().top, 0), $canvas.height());
+        var distance = Math.sqrt(Math.pow(gradientX - $canvas.width()/2, 2) + Math.pow(gradientY - $canvas.height()/2, 2)) / Math.sqrt(Math.pow($canvas.width()/2, 2) + Math.pow($canvas.height()/2, 2));
 
-        var gradient = context.createRadialGradient(gradientX, gradientY, 300 + (300 * distance), gradientX, gradientY, 0);
-        gradient.addColorStop(0, '#007BFF');
-        gradient.addColorStop(1, '#0056b3');
+        var gradient = context.createRadialGradient(gradientX, gradientY, 300+(300*distance), gradientX, gradientY, 0);
+        gradient.addColorStop(0, '#102ce5');
+        gradient.addColorStop(1, '#E406D6');
 
-        var groups = [pointsA, pointsB];
+        var groups = [pointsA, pointsB]
 
         for (var j = 0; j <= 1; j++) {
             var points = groups[j];
@@ -173,18 +174,19 @@ $(function() {
             for (var i = 0; i < points.length; i++) {
                 var p = points[i];
                 var nextP = points[i + 1];
+                var val = 30*0.552284749831;
 
                 if (nextP != undefined) {
-                    p.cx1 = (p.x + nextP.x) / 2;
-                    p.cy1 = (p.y + nextP.y) / 2;
-                    p.cx2 = (p.x + nextP.x) / 2;
-                    p.cy2 = (p.y + nextP.y) / 2;
+                    p.cx1 = (p.x+nextP.x)/2;
+                    p.cy1 = (p.y+nextP.y)/2;
+                    p.cx2 = (p.x+nextP.x)/2;
+                    p.cy2 = (p.y+nextP.y)/2;
 
                     context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
                 } else {
                     nextP = points[0];
-                    p.cx1 = (p.x + nextP.x) / 2;
-                    p.cy1 = (p.y + nextP.y) / 2;
+                    p.cx1 = (p.x+nextP.x)/2;
+                    p.cy1 = (p.y+nextP.y)/2;
 
                     context.bezierCurveTo(p.x, p.y, p.cx1, p.cy1, p.cx1, p.cy1);
                 }
@@ -192,8 +194,28 @@ $(function() {
 
             context.fill();
         }
+
+        if (showIndicators) {
+            context.fillStyle = '#000';
+            context.beginPath();
+            for (var i = 0; i < pointsA.length; i++) {
+                var p = pointsA[i];
+
+                context.rect(p.x - 1, p.y - 1, 2, 2);
+            }
+            context.fill();
+
+            context.fillStyle = '#f00';
+            context.beginPath();
+            for (var i = 0; i < pointsA.length; i++) {
+                var p = pointsA[i];
+
+                context.rect(p.cx1 - 1, p.cy1 - 1, 2, 2);
+                context.rect(p.cx2 - 1, p.cy2 - 1, 2, 2);
+            }
+            context.fill();
+        }
     }
 
     initButton();
 });
-
