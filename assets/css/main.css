@@ -642,9 +642,16 @@ input, select, textarea {
     background-color: white; /* Match the background color of other icons */
     padding: 10px;
     box-sizing: border-box;
-    content: ''; /* Ensures the pseudo-element doesn't interfere */
-    opacity: 1; /* Ensures the icon is fully visible */
+    opacity: 1; /* Ensure it is fully visible */
+    transition: all 0.3s ease; /* Smooth transition on hover */
 }
+
+.icon-linktree:hover {
+    background-image: url('linktree.png'); /* Reapply the background image on hover */
+    background-color: white; /* Keep the background color the same */
+    opacity: 1; /* Ensure it stays fully visible */
+}
+
 
 
 
