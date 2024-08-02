@@ -901,7 +901,7 @@ ul.icons {
     cursor: default;
     list-style: none;
     padding-left: 0;
-    margin-left: 13px; /* Adjust this value to move the icons to the right */
+    margin-left: 10px; /* Adjust this value to move the icons to the right */
 }
 
 ul.icons li {
