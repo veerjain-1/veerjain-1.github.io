@@ -600,6 +600,15 @@ input, select, textarea {
 		border-bottom: none;
 		position: relative;
 	}
+.icon-linktree {
+    background-image: url('path/to/your/linktree-logo.png');
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
