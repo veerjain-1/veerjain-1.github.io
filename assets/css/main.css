@@ -600,14 +600,7 @@ input, select, textarea {
 		border-bottom: none;
 		position: relative;
 	}
-.icon-linktree {
-    background-image: url('linktree.png');
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
+
 
 
 		.icon:before {
@@ -638,6 +631,17 @@ input, select, textarea {
 		.icon.brands:before {
 			font-family: 'Font Awesome 5 Brands';
 		}
+.icon-linktree {
+    background-image: url('linktree.png');
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
 
 /* Image */
 
