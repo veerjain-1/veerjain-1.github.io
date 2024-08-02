@@ -630,27 +630,7 @@ input, select, textarea {
 		.icon.brands:before {
 			font-family: 'Font Awesome 5 Brands';
 		}
-.icon-linktree {
-    background-image: url('linktree.png');
-    width: 48px; /* Match the size of other icons */
-    height: 48px; /* Match the size of other icons */
-    display: inline-block;
-    background-size: 50%; /* Adjust to fit the icon within the circle */
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    background-color: white; /* Match the background color of other icons */
-    padding: 10px;
-    box-sizing: border-box;
-    opacity: 1; /* Ensure it is fully visible */
-    transition: all 0.3s ease; /* Smooth transition on hover */
-}
 
-.icon-linktree:hover {
-    background-image: url('linktree.png'); /* Reapply the background image on hover */
-    background-color: white; /* Keep the background color the same */
-    opacity: 1; /* Ensure it stays fully visible */
-}
 
 
 
@@ -917,7 +897,6 @@ input, select, textarea {
 		}
 
 /* Icons */
-
 ul.icons {
     cursor: default;
     list-style: none;
@@ -927,10 +906,7 @@ ul.icons {
 ul.icons li {
     display: inline-block;
     padding: 0 0.75em 0 0;
-}
-
-ul.icons li:last-child {
-    padding-right: 0;
+    vertical-align: middle; /* Aligns all list items (icons) vertically */
 }
 
 ul.icons li a {
@@ -938,18 +914,39 @@ ul.icons li a {
     box-shadow: inset 0 0 0 1px #ffffff;
     display: inline-block;
     height: 2.25rem;
-    line-height: 2.25rem;
+    line-height: 2.25rem; /* Ensures the icon content is vertically centered */
     text-align: center;
     width: 2.25rem;
-    background-color: rgba(255, 255, 255, 0.075); /* Adjust to make sure it's visible */
+    background-color: rgba(255, 255, 255, 0.075);
+    vertical-align: middle; /* Aligns all icons to the middle line */
+    margin-bottom: 0; /* Ensures no unwanted space below the icon */
+    margin-top: 0; /* Ensures no unwanted space above the icon */
+    padding: 0; /* Removes any internal padding */
 }
 
 ul.icons li a:hover {
-    background-color: rgba(255, 255, 255, 0.15); /* Make the hover effect more subtle */
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 ul.icons li a:active {
     background-color: rgba(255, 255, 255, 0.175);
+}
+
+/* Specific styling for the Linktree icon */
+.icon-linktree {
+    background-image: url('linktree.png');
+    width: 48px; /* Match the size of other icons */
+    height: 48px; /* Match the size of other icons */
+    display: inline-block;
+    background-size: 50%; /* Adjust to fit the icon within the circle */
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    background-color: white; /* Match the background color of other icons */
+    vertical-align: middle; /* Ensure the icon aligns with others */
+    box-sizing: border-box;
+    margin-bottom: 0; /* Ensures no unwanted space below the icon */
+    margin-top: 0; /* Ensures no unwanted space above the icon */
 }
 
 
