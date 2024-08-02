@@ -901,6 +901,7 @@ ul.icons {
     cursor: default;
     list-style: none;
     padding-left: 0;
+    margin-left: 15px; /* Adjust this value to move the icons to the right */
 }
 
 ul.icons li {
@@ -908,6 +909,7 @@ ul.icons li {
     padding: 0 0.75em 0 0;
     vertical-align: middle; /* Aligns all list items (icons) vertically */
 }
+
 
 ul.icons li a {
     border-radius: 100%;
