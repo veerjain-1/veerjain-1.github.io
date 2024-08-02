@@ -632,17 +632,20 @@ input, select, textarea {
 		}
 .icon-linktree {
     background-image: url('linktree.png');
-    width: 48px; /* Adjust this value to match the size of other icons */
-    height: 48px; /* Adjust this value to match the size of other icons */
+    width: 48px; /* Match the size of other icons */
+    height: 48px; /* Match the size of other icons */
     display: inline-block;
-    background-size: 50%; /* Adjust this value to fit the icon within the circle */
+    background-size: 50%; /* Adjust to fit the icon within the circle */
     background-repeat: no-repeat;
-    background-position: center; /* Center the icon inside the circle */
-    border-radius: 50%; /* Makes the background circular */
+    background-position: center;
+    border-radius: 50%;
     background-color: white; /* Match the background color of other icons */
-    padding: 10px; /* Adjust this value to control the spacing around the icon */
+    padding: 10px;
     box-sizing: border-box;
+    content: ''; /* Ensures the pseudo-element doesn't interfere */
+    opacity: 1; /* Ensures the icon is fully visible */
 }
+
 
 
 
