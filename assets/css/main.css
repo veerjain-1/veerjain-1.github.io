@@ -601,7 +601,7 @@ input, select, textarea {
 		position: relative;
 	}
 .icon-linktree {
-    background-image: url('path/to/your/linktree-logo.png');
+    background-image: url('linktree.png');
     width: 24px;
     height: 24px;
     display: inline-block;
