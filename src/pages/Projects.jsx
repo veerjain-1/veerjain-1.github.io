@@ -71,7 +71,7 @@ export default function Projects() {
         title="Agentic CI/CD Orchestrator"
         subtitle="Java (Spring Boot), LangGraph, Kafka, PostgreSQL"
         link="https://github.com/veerjain-1/agentic-cicd-orchestrator"
-        gifUrl="/cicd_static.png"
+        gifUrl="/cicd.webp"
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -100,7 +100,7 @@ export default function Projects() {
         title="Finance SLM & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
-        gifUrl="/finance_static.png"
+        gifUrl="/finance.webp"
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -113,7 +113,7 @@ export default function Projects() {
         title="PaySplit App"
         subtitle="Node.js, Express, MongoDB, Jest"
         link="https://github.com/veerjain-1/PaySplitApp"
-        gifUrl="/paysplit_static.png"
+        gifUrl="/paysplit_new_static.webp"
         reverse={true}
         onImageClick={setSelectedImage}
       >

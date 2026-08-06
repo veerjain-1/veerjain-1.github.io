@@ -25,15 +25,15 @@ export default function Home() {
         <div className="text-2xl md:text-3xl font-semibold text-sky-400 mb-6 h-10">
           <TypeAnimation
             sequence={[
-              'Software Engineer |',
+              'Software Engineer',
               2000,
-              'AI Researcher |',
+              'AI Researcher',
               2000,
-              'Backend Developer |',
+              'Backend Developer',
               2000,
-              'Agentic AI Architect |',
+              'Agentic AI Architect',
               2000,
-              'Full-Stack Developer |',
+              'Full-Stack Developer',
               2000,
             ]}
             wrapper="span"

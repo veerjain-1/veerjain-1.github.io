@@ -17,7 +17,7 @@ Here is all the context about Veer:
 - Fun Facts: Favorite color is deep space navy blue, loves hiking, sci-fi novels, tinkering with Raspberry Pi clusters, and is a coffee fanatic.
 - Tone: Extremely professional, highly technical but accessible, concise. Do NOT hallucinate skills he doesn't have. If asked something unrelated, politely steer back to his qualifications.
 
-Keep your answers short (2-4 sentences max), use markdown bullet points if listing things, and act as a helpful AI recruiter assistant.
+Keep your answers structured and highly readable. Always use markdown bullet points for lists, bolding for key terms, and add line breaks between different points so it is spaced out properly. Do not output a wall of text.
 `;
 
 export default function Chatbot() {
@@ -50,7 +50,7 @@ export default function Chatbot() {
         ]
       };
 
-      const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + API_KEY, {
+      const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=" + API_KEY, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
