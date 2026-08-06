@@ -63,7 +63,7 @@ export default function Projects() {
         title="Agentic CI/CD Orchestrator"
         subtitle="Java (Spring Boot), LangGraph, Kafka, PostgreSQL"
         link="https://github.com/veerjain-1/agentic-cicd-orchestrator"
-        gifUrl="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
+        gifUrl="/cicd_recording_1785982246200.webp"
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Designed and deployed an autonomous agentic platform using Java (Spring Boot) and LangGraph to intercept high-frequency code commits; automated the orchestration of multi-stage CI/CD build workflows and real-time dependency validation, saving ~15 engineering hours per month.</li>
@@ -76,7 +76,7 @@ export default function Projects() {
         title="AI Code Review Platform"
         subtitle="Node.js, Java, LangChain, MongoDB"
         link="https://github.com/veerjain-1/ai-code-review-platform"
-        gifUrl="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800"
+        gifUrl="/codereview_recording_1785982270903.webp"
         reverse={true}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -90,7 +90,7 @@ export default function Projects() {
         title="Finance SLM & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
-        gifUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800"
+        gifUrl="/finance_recording_1785982310252.webp"
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Built a domain-specific small language model (SLM) pipeline utilizing the finance-alpaca dataset to power a chatbot capable of answering complex finance queries through supervised fine-tuning (SFT).</li>
@@ -102,7 +102,7 @@ export default function Projects() {
         title="PaySplit App"
         subtitle="Node.js, Express, MongoDB, Jest"
         link="https://github.com/veerjain-1/PaySplitApp"
-        gifUrl="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=800"
+        gifUrl="/paysplit_recording_1785982330196.webp"
         reverse={true}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -111,8 +111,6 @@ export default function Projects() {
           <li>Secured API endpoints with stateless JWT verification middleware powered by Firebase Authentication, ensuring horizontal scalability.</li>
         </ul>
       </ProjectCard>
-      
-      <p className="text-center text-slate-500 italic text-sm mt-8">Note: The images above are static placeholders. You can easily swap them with actual demo GIFs of your projects in the code!</p>
     </div>
   );
 }

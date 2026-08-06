@@ -32,27 +32,44 @@ export default function Skills() {
     { name: 'Java', icon: <FaJava /> },
     { name: 'C++', icon: <SiCplusplus /> },
     { name: 'JavaScript', icon: <FaNodeJs /> },
+    { name: 'TypeScript', icon: <FaNodeJs /> }, // Generic icon for TS if SiTypescript not imported
     { name: 'SQL', icon: <FaDatabase /> },
   ];
 
   const cloudDevOps = [
     { name: 'AWS', icon: <FaAws /> },
+    { name: 'Azure', icon: <FaAws /> },
     { name: 'Docker', icon: <FaDocker /> },
     { name: 'Kafka', icon: <SiApachekafka /> },
-    { name: 'CI/CD', icon: <FaCogs /> },
+    { name: 'GitLab CI', icon: <FaCogs /> },
+    { name: 'Kubernetes', icon: <FaDocker /> },
   ];
 
   const aiInfrastructure = [
     { name: 'PyTorch', icon: <SiPytorch /> },
-    { name: 'Agentic GenAI', icon: <FaCogs /> }, // Using generic cogs since no specific agent icon
-    { name: 'RAG / SLMs', icon: <FaDatabase /> },
+    { name: 'LangChain', icon: <FaCogs /> },
+    { name: 'HuggingFace', icon: <FaCogs /> },
+    { name: 'AWS Bedrock', icon: <FaAws /> },
+    { name: 'Vector DBs', icon: <FaDatabase /> },
+    { name: 'Agentic GenAI', icon: <FaCogs /> },
   ];
   
   const webTech = [
     { name: 'React', icon: <FaReact /> },
     { name: 'Node.js', icon: <FaNodeJs /> },
+    { name: 'Express', icon: <FaNodeJs /> },
     { name: 'MongoDB', icon: <SiMongodb /> },
+    { name: 'PostgreSQL', icon: <FaDatabase /> },
     { name: 'Firebase', icon: <SiFirebase /> },
+  ];
+
+  const mobileTech = [
+    { name: 'Swift (iOS)', icon: <FaReact /> },
+    { name: 'Kotlin', icon: <FaReact /> },
+    { name: 'Flutter', icon: <FaReact /> },
+    { name: 'React Native', icon: <FaReact /> },
+    { name: 'Mobile UI/UX', icon: <FaCogs /> },
+    { name: 'App Store Deploy', icon: <FaCogs /> },
   ];
 
   return (
@@ -66,10 +83,11 @@ export default function Skills() {
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <SkillCategory title="Languages" skills={languages} delay={0.1} />
-        <SkillCategory title="AI & Infrastructure" skills={aiInfrastructure} delay={0.2} />
+        <SkillCategory title="Artificial Intelligence" skills={aiInfrastructure} delay={0.1} />
+        <SkillCategory title="Languages" skills={languages} delay={0.2} />
         <SkillCategory title="Cloud & DevOps" skills={cloudDevOps} delay={0.3} />
         <SkillCategory title="Web Technologies" skills={webTech} delay={0.4} />
+        <SkillCategory title="Mobile Development" skills={mobileTech} delay={0.5} />
       </div>
     </div>
   );
