@@ -28,48 +28,57 @@ const SkillCategory = ({ title, skills, delay }) => (
 
 export default function Skills() {
   const languages = [
-    { name: 'Python', icon: <FaPython /> },
-    { name: 'Java', icon: <FaJava /> },
-    { name: 'C++', icon: <SiCplusplus /> },
-    { name: 'JavaScript', icon: <FaNodeJs /> },
-    { name: 'TypeScript', icon: <FaNodeJs /> }, // Generic icon for TS if SiTypescript not imported
-    { name: 'SQL', icon: <FaDatabase /> },
+    { name: 'Python', icon: <FaPython className="text-blue-400" /> },
+    { name: 'Java', icon: <FaJava className="text-orange-500" /> },
+    { name: 'C++', icon: <SiCplusplus className="text-blue-500" /> },
+    { name: 'JavaScript', icon: <FaNodeJs className="text-yellow-400" /> },
+    { name: 'TypeScript', icon: <FaNodeJs className="text-blue-500" /> },
+    { name: 'SQL', icon: <FaDatabase className="text-blue-300" /> },
+  ];
+
+  const agenticAI = [
+    { name: 'Agent Evals', icon: <FaCogs className="text-purple-400" /> },
+    { name: 'Red Teaming', icon: <FaCogs className="text-red-500" /> },
+    { name: 'Agent Orchestration', icon: <FaCogs className="text-sky-400" /> },
+    { name: 'LangChain', icon: <FaCogs className="text-green-500" /> },
+    { name: 'Threat Modeling', icon: <FaCogs className="text-orange-400" /> },
+    { name: 'AgentCore', icon: <FaAws className="text-orange-500" /> },
+  ];
+
+  const machineLearning = [
+    { name: 'PyTorch', icon: <SiPytorch className="text-orange-500" /> },
+    { name: 'HuggingFace', icon: <FaCogs className="text-yellow-500" /> },
+    { name: 'RAG Pipelines', icon: <FaDatabase className="text-blue-400" /> },
+    { name: 'Vector DBs', icon: <FaDatabase className="text-purple-500" /> },
+    { name: 'Scikit-Learn', icon: <FaCogs className="text-orange-400" /> },
+    { name: 'Data Eng', icon: <FaDatabase className="text-sky-300" /> },
   ];
 
   const cloudDevOps = [
-    { name: 'AWS', icon: <FaAws /> },
-    { name: 'Azure', icon: <FaAws /> },
-    { name: 'Docker', icon: <FaDocker /> },
-    { name: 'Kafka', icon: <SiApachekafka /> },
-    { name: 'GitLab CI', icon: <FaCogs /> },
-    { name: 'Kubernetes', icon: <FaDocker /> },
-  ];
-
-  const aiInfrastructure = [
-    { name: 'PyTorch', icon: <SiPytorch /> },
-    { name: 'LangChain', icon: <FaCogs /> },
-    { name: 'HuggingFace', icon: <FaCogs /> },
-    { name: 'AWS Bedrock', icon: <FaAws /> },
-    { name: 'Vector DBs', icon: <FaDatabase /> },
-    { name: 'Agentic GenAI', icon: <FaCogs /> },
+    { name: 'AWS', icon: <FaAws className="text-orange-500" /> },
+    { name: 'Azure', icon: <FaAws className="text-blue-500" /> },
+    { name: 'Docker', icon: <FaDocker className="text-blue-400" /> },
+    { name: 'Kafka', icon: <SiApachekafka className="text-gray-300" /> },
+    { name: 'CI/CD Pipelines', icon: <FaCogs className="text-sky-500" /> },
+    { name: 'Kubernetes', icon: <FaDocker className="text-blue-500" /> },
   ];
   
   const webTech = [
-    { name: 'React', icon: <FaReact /> },
-    { name: 'Node.js', icon: <FaNodeJs /> },
-    { name: 'Express', icon: <FaNodeJs /> },
-    { name: 'MongoDB', icon: <SiMongodb /> },
-    { name: 'PostgreSQL', icon: <FaDatabase /> },
-    { name: 'Firebase', icon: <SiFirebase /> },
+    { name: 'React', icon: <FaReact className="text-cyan-400" /> },
+    { name: 'Node.js', icon: <FaNodeJs className="text-green-500" /> },
+    { name: 'Express', icon: <FaNodeJs className="text-gray-400" /> },
+    { name: 'MongoDB', icon: <SiMongodb className="text-green-500" /> },
+    { name: 'PostgreSQL', icon: <FaDatabase className="text-blue-400" /> },
+    { name: 'Firebase', icon: <SiFirebase className="text-yellow-500" /> },
   ];
 
   const mobileTech = [
-    { name: 'Swift (iOS)', icon: <FaReact /> },
-    { name: 'Kotlin', icon: <FaReact /> },
-    { name: 'Flutter', icon: <FaReact /> },
-    { name: 'React Native', icon: <FaReact /> },
-    { name: 'Mobile UI/UX', icon: <FaCogs /> },
-    { name: 'App Store Deploy', icon: <FaCogs /> },
+    { name: 'Swift (iOS)', icon: <FaReact className="text-orange-500" /> },
+    { name: 'Kotlin', icon: <FaReact className="text-purple-500" /> },
+    { name: 'Flutter', icon: <FaReact className="text-cyan-400" /> },
+    { name: 'React Native', icon: <FaReact className="text-cyan-400" /> },
+    { name: 'Mobile UI/UX', icon: <FaCogs className="text-pink-400" /> },
+    { name: 'App Deployment', icon: <FaCogs className="text-blue-500" /> },
   ];
 
   return (
@@ -83,11 +92,12 @@ export default function Skills() {
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <SkillCategory title="Artificial Intelligence" skills={aiInfrastructure} delay={0.1} />
-        <SkillCategory title="Languages" skills={languages} delay={0.2} />
+        <SkillCategory title="Agentic AI & Security" skills={agenticAI} delay={0.1} />
+        <SkillCategory title="Machine Learning & Data" skills={machineLearning} delay={0.2} />
         <SkillCategory title="Cloud & DevOps" skills={cloudDevOps} delay={0.3} />
-        <SkillCategory title="Web Technologies" skills={webTech} delay={0.4} />
-        <SkillCategory title="Mobile Development" skills={mobileTech} delay={0.5} />
+        <SkillCategory title="Languages" skills={languages} delay={0.4} />
+        <SkillCategory title="Web Technologies" skills={webTech} delay={0.5} />
+        <SkillCategory title="Mobile Development" skills={mobileTech} delay={0.6} />
       </div>
     </div>
   );

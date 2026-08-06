@@ -63,7 +63,7 @@ export default function Projects() {
         title="Agentic CI/CD Orchestrator"
         subtitle="Java (Spring Boot), LangGraph, Kafka, PostgreSQL"
         link="https://github.com/veerjain-1/agentic-cicd-orchestrator"
-        gifUrl="/cicd_recording_1785982246200.webp"
+        gifUrl="/cicd_recording_1785982993857.webp"
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Designed and deployed an autonomous agentic platform using Java (Spring Boot) and LangGraph to intercept high-frequency code commits; automated the orchestration of multi-stage CI/CD build workflows and real-time dependency validation, saving ~15 engineering hours per month.</li>
@@ -76,7 +76,7 @@ export default function Projects() {
         title="AI Code Review Platform"
         subtitle="Node.js, Java, LangChain, MongoDB"
         link="https://github.com/veerjain-1/ai-code-review-platform"
-        gifUrl="/codereview_recording_1785982270903.webp"
+        gifUrl="/codereview_recording_1785983020542.webp"
         reverse={true}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -90,7 +90,7 @@ export default function Projects() {
         title="Finance SLM & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
-        gifUrl="/finance_recording_1785982310252.webp"
+        gifUrl="/finance_recording_1785983037372.webp"
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Built a domain-specific small language model (SLM) pipeline utilizing the finance-alpaca dataset to power a chatbot capable of answering complex finance queries through supervised fine-tuning (SFT).</li>
@@ -102,7 +102,7 @@ export default function Projects() {
         title="PaySplit App"
         subtitle="Node.js, Express, MongoDB, Jest"
         link="https://github.com/veerjain-1/PaySplitApp"
-        gifUrl="/paysplit_recording_1785982330196.webp"
+        gifUrl="/paysplit_recording_1785983054876.webp"
         reverse={true}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">

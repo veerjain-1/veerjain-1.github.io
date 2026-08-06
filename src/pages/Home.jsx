@@ -6,14 +6,14 @@ import { FaGithub, FaLinkedin, FaRobot } from 'react-icons/fa';
 
 export default function Home() {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-between min-h-[calc(100vh-80px)] gap-16">
+    <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-center min-h-[calc(100vh-80px)] gap-12 lg:gap-16 px-4">
       
       {/* Left side text */}
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="lg:w-1/2"
+        className="lg:w-[55%]"
       >
         <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
           Hi, I'm <br />
@@ -72,7 +72,7 @@ export default function Home() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="lg:w-1/2 flex justify-center relative"
+        className="lg:w-[45%] flex justify-center relative"
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/20 to-purple-500/20 blur-3xl rounded-full z-0 transform scale-150"></div>
         <img 

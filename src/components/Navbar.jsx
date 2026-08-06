@@ -5,7 +5,6 @@ import { FaFileAlt } from 'react-icons/fa';
 
 export default function Navbar() {
   const navItems = [
-    { id: '/', label: 'About' },
     { id: '/experience', label: 'Experience' },
     { id: '/skills', label: 'Skills' },
     { id: '/projects', label: 'Projects' },
