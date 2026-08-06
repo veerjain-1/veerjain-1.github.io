@@ -1,19 +1,16 @@
-This is Veer Jain's Personal Website, a fun little one-pager with some fun interactive "pages"
-and a cool depth effect. 
+# React + Vite
 
-The website should help give you more information as for who Veer is and why he is a great fit in the Software Industry.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-The website is simple, fully responsive, and kitted out with all the usual pre-styled elements you'd expect.
-Hope you dig it :)
+Currently, two official plugins are available:
 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-Credits:
+## React Compiler
 
-	Demo Images:
-		Unsplash (unsplash.com)
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-	Icons:
-		Font Awesome (fontawesome.io)
+## Expanding the Oxlint configuration
 
-	Other:
-		jQuery (jquery.com)
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
