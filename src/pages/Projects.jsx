@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 const ProjectCard = ({ title, subtitle, link, gifUrl, children, reverse = false, onImageClick }) => {
   return (
@@ -48,6 +48,15 @@ const ProjectCard = ({ title, subtitle, link, gifUrl, children, reverse = false,
 export default function Projects() {
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // Handle ESC key to close Lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div className="max-w-6xl mx-auto py-12 px-6 relative">
       <motion.h2 
@@ -62,7 +71,7 @@ export default function Projects() {
         title="Agentic CI/CD Orchestrator"
         subtitle="Java (Spring Boot), LangGraph, Kafka, PostgreSQL"
         link="https://github.com/veerjain-1/agentic-cicd-orchestrator"
-        gifUrl="/cicd_recording_new_1785983692718.webp"
+        gifUrl="/cicd_static.png"
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -76,7 +85,7 @@ export default function Projects() {
         title="AI Code Review Platform"
         subtitle="Node.js, Java, LangChain, MongoDB"
         link="https://github.com/veerjain-1/ai-code-review-platform"
-        gifUrl="/codereview_recording_new_1785983715105.webp"
+        gifUrl="/codereview_static.png"
         reverse={true}
         onImageClick={setSelectedImage}
       >
@@ -91,7 +100,7 @@ export default function Projects() {
         title="Finance SLM & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
-        gifUrl="/finance_recording_new_1785983731691.webp"
+        gifUrl="/finance_static.png"
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
@@ -104,7 +113,7 @@ export default function Projects() {
         title="PaySplit App"
         subtitle="Node.js, Express, MongoDB, Jest"
         link="https://github.com/veerjain-1/PaySplitApp"
-        gifUrl="/paysplit_recording_new_1785983748819.webp"
+        gifUrl="/paysplit_static.png"
         reverse={true}
         onImageClick={setSelectedImage}
       >
@@ -122,13 +131,13 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm cursor-pointer"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md cursor-pointer"
           >
             <button 
               onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+              className="absolute top-8 right-8 text-white bg-slate-800 hover:bg-slate-700 hover:scale-110 p-3 rounded-full transition-all shadow-xl border border-slate-600 z-50 flex items-center gap-2 font-bold"
             >
-              <FaTimes size={32} />
+              <FaTimes size={24} /> <span className="hidden md:inline">Close (Esc)</span>
             </button>
             <motion.img 
               initial={{ scale: 0.9, opacity: 0 }}
@@ -136,7 +145,7 @@ export default function Projects() {
               exit={{ scale: 0.9, opacity: 0 }}
               src={selectedImage} 
               alt="Fullscreen Demo"
-              className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl border border-slate-700"
+              className="w-full max-w-5xl max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-slate-700/50"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
