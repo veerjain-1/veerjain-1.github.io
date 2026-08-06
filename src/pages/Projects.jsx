@@ -1,60 +1,59 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaTimes } from 'react-icons/fa';
 
-const ProjectCard = ({ title, subtitle, link, gifUrl, children, reverse }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12 items-center mb-24`}
-  >
-    {/* Project Image/GIF */}
-    <div className="w-full lg:w-1/2 relative group">
-      <div className="absolute inset-0 bg-sky-500/20 rounded-2xl transform translate-x-3 translate-y-3 -z-10 group-hover:translate-x-5 group-hover:translate-y-5 transition-transform duration-300"></div>
-      <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video bg-slate-900">
-        <img 
-          src={gifUrl} 
-          alt={title} 
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-      </div>
-    </div>
-
-    {/* Project Details */}
-    <div className={`w-full lg:w-1/2 ${reverse ? 'lg:text-right' : ''}`}>
-      <h3 className="text-3xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-sky-400 font-medium mb-6 text-lg">{subtitle}</p>
-      
-      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 text-slate-300 shadow-xl mb-6">
-        <div className="space-y-4 text-base leading-relaxed">
-          {children}
+const ProjectCard = ({ title, subtitle, link, gifUrl, children, reverse = false, onImageClick }) => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+      className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12 items-center mb-24`}
+    >
+      <div className="lg:w-1/2 w-full cursor-pointer hover:opacity-90 transition-opacity" onClick={() => onImageClick(gifUrl)}>
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 group">
+          <img 
+            src={gifUrl} 
+            alt={`${title} demo`} 
+            className="w-full object-cover rounded-2xl"
+          />
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+             <span className="text-white bg-slate-800/80 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">View Fullscreen</span>
+          </div>
         </div>
       </div>
+      
+      <div className="lg:w-1/2 w-full space-y-6">
+        <div>
+          <h3 className="text-3xl font-bold text-white mb-2">{title}</h3>
+          <p className="text-sky-400 font-medium text-lg">{subtitle}</p>
+        </div>
+        
+        <div className="text-slate-300 text-lg leading-relaxed">
+          {children}
+        </div>
 
-      <div className={`flex gap-4 ${reverse ? 'lg:justify-end' : ''}`}>
-        <a 
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
-        >
-          <FaGithub size={24} /> <span className="font-medium">View Source</span>
-        </a>
+        <div className="pt-4 flex gap-4">
+          <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all shadow-lg hover:shadow-xl">
+            <FaGithub className="text-xl" />
+            <span>View Source</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 export default function Projects() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6">
+    <div className="max-w-6xl mx-auto py-12 px-6 relative">
       <motion.h2 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-4xl font-bold text-white mb-20 text-center"
+        className="text-4xl font-bold text-white mb-16 text-center"
       >
         Featured Projects
       </motion.h2>
@@ -63,7 +62,8 @@ export default function Projects() {
         title="Agentic CI/CD Orchestrator"
         subtitle="Java (Spring Boot), LangGraph, Kafka, PostgreSQL"
         link="https://github.com/veerjain-1/agentic-cicd-orchestrator"
-        gifUrl="/cicd_recording_1785982993857.webp"
+        gifUrl="/cicd_recording_new_1785983692718.webp"
+        onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Designed and deployed an autonomous agentic platform using Java (Spring Boot) and LangGraph to intercept high-frequency code commits; automated the orchestration of multi-stage CI/CD build workflows and real-time dependency validation, saving ~15 engineering hours per month.</li>
@@ -76,8 +76,9 @@ export default function Projects() {
         title="AI Code Review Platform"
         subtitle="Node.js, Java, LangChain, MongoDB"
         link="https://github.com/veerjain-1/ai-code-review-platform"
-        gifUrl="/codereview_recording_1785983020542.webp"
+        gifUrl="/codereview_recording_new_1785983715105.webp"
         reverse={true}
+        onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Built a high-scale polyglot microservices backend using Node.js and Java to provide automated AI code reviews for developer clubs, utilizing secure RESTful APIs and LangChain for intelligent feedback loops integrated via Git hooks.</li>
@@ -90,7 +91,8 @@ export default function Projects() {
         title="Finance SLM & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
-        gifUrl="/finance_recording_1785983037372.webp"
+        gifUrl="/finance_recording_new_1785983731691.webp"
+        onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Built a domain-specific small language model (SLM) pipeline utilizing the finance-alpaca dataset to power a chatbot capable of answering complex finance queries through supervised fine-tuning (SFT).</li>
@@ -102,8 +104,9 @@ export default function Projects() {
         title="PaySplit App"
         subtitle="Node.js, Express, MongoDB, Jest"
         link="https://github.com/veerjain-1/PaySplitApp"
-        gifUrl="/paysplit_recording_1785983054876.webp"
+        gifUrl="/paysplit_recording_new_1785983748819.webp"
         reverse={true}
+        onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
           <li>Built a robust expense-sharing RESTful API backed by a flexible MongoDB document architecture capable of handling highly nested, polymorphic split types (even, exact, percentages) for dynamic user groups.</li>
@@ -111,6 +114,34 @@ export default function Projects() {
           <li>Secured API endpoints with stateless JWT verification middleware powered by Firebase Authentication, ensuring horizontal scalability.</li>
         </ul>
       </ProjectCard>
+
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm cursor-pointer"
+          >
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+            >
+              <FaTimes size={32} />
+            </button>
+            <motion.img 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              src={selectedImage} 
+              alt="Fullscreen Demo"
+              className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl border border-slate-700"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
