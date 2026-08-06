@@ -113,7 +113,7 @@ export default function Projects() {
         title="PaySplit App"
         subtitle="Node.js, Express, MongoDB, Jest"
         link="https://github.com/veerjain-1/PaySplitApp"
-        gifUrl="/paysplit_new_static.webp"
+        gifUrl="/paysplit_true_static.png"
         reverse={true}
         onImageClick={setSelectedImage}
       >
