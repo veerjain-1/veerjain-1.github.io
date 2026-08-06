@@ -100,7 +100,7 @@ export default function Projects() {
         title="Finance SLM & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
-        gifUrl="/finance.webp"
+        gifUrl="/finance_app.webp"
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
