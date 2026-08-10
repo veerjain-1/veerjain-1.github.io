@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaPython, FaJava, FaDocker, FaAws, FaReact, FaNodeJs, FaDatabase, FaCogs } from 'react-icons/fa';
 import { SiCplusplus, SiPytorch, SiApachekafka, SiMongodb, SiFirebase } from 'react-icons/si';
+import { VscAzure } from 'react-icons/vsc';
 
 const SkillCategory = ({ title, skills, delay }) => (
   <motion.div
@@ -56,7 +57,7 @@ export default function Skills() {
 
   const cloudDevOps = [
     { name: 'AWS', icon: <FaAws className="text-orange-500" /> },
-    { name: 'Azure', icon: <FaAws className="text-blue-500" /> },
+    { name: 'Azure', icon: <VscAzure className="text-blue-500" /> },
     { name: 'Docker', icon: <FaDocker className="text-blue-400" /> },
     { name: 'Kafka', icon: <SiApachekafka className="text-gray-300" /> },
     { name: 'CI/CD Pipelines', icon: <FaCogs className="text-sky-500" /> },
