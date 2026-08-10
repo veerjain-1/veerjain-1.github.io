@@ -223,13 +223,13 @@ export default function Chatbot() {
             className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
           />
           <motion.div
-            initial={{ rotate: -360 }}
+            initial={{ rotate: -1080 }}
             animate={{ rotate: 0 }}
-            transition={{ duration: 1, ease: "backOut" }}
+            transition={{ duration: 2.5, ease: "backOut" }}
           >
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
             >
               <FaBrain size={22} />
             </motion.div>
