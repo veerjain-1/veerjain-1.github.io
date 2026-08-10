@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaPaperPlane, FaMagic, FaBrain } from 'react-icons/fa';
 
-const BOT_NAME = "veer.ai";
+const BOT_NAME = "Veer.ai";
 const PROXY_URL = "https://veer-ai-proxy.veer-ai-proxy.workers.dev";
 
 const SYSTEM_PROMPT = `
-You are veer.ai, an AI assistant representing Veer Jain. You are integrated directly into his portfolio website.
+You are Veer.ai, an AI assistant representing Veer Jain. You are integrated directly into his portfolio website.
 Here is all the context about Veer:
 - He is a Computer Science and AI double major at Purdue University, graduating Dec 2026.
 - He is actively seeking 2027 New Grad Software Engineering roles.
@@ -23,7 +23,7 @@ Keep your answers structured and highly readable. Always use markdown bullet poi
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm **veer.ai**, a generative AI model trained on Veer's resume and background. Ask me anything about his experience, projects, or fun facts!", isBot: true }
+    { text: "Hi! I'm **Veer.ai**, a generative AI model trained on Veer's resume and background. Ask me anything about his experience, projects, or fun facts!", isBot: true }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
