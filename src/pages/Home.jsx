@@ -27,6 +27,8 @@ export default function Home() {
             sequence={[
               'Software Engineer',
               2000,
+              'AI Security Engineer',
+              2000,
               'AI Researcher',
               2000,
               'Backend Developer',
