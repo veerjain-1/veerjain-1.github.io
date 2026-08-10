@@ -93,30 +93,109 @@ export default function Chatbot() {
     "Fun Facts",
   ];
 
-  // Helper to render markdown-like lists simply
-  const renderMessage = (text) => {
-    return text.split('\n').map((line, idx) => {
-      // Very basic bold parsing
-      let formattedLine = line;
-      if (formattedLine.startsWith('- ')) {
-        const content = formattedLine.replace('- ', '');
-        const boldMatch = content.match(/\*\*(.*?)\*\*/);
-        if (boldMatch) {
-          const boldText = boldMatch[1];
-          const rest = content.replace(`**${boldText}**`, '');
-          return <li key={idx} className="ml-4 mt-1 list-disc"><strong>{boldText}</strong>{rest}</li>;
-        }
-        return <li key={idx} className="ml-4 mt-1 list-disc">{content}</li>;
-      } else {
-        const boldMatch = formattedLine.match(/\*\*(.*?)\*\*/);
-        if (boldMatch) {
-          const boldText = boldMatch[1];
-          const parts = formattedLine.split(`**${boldText}**`);
-          return <p key={idx} className="mt-1">{parts[0]}<strong>{boldText}</strong>{parts[1]}</p>;
-        }
-        return <p key={idx} className="mt-1">{formattedLine}</p>;
+  // Parse inline markdown (bold, italic, code) into React elements
+  const parseInline = (text) => {
+    // Handle **bold**, *italic*, and `code` with a single regex pass
+    const parts = [];
+    let remaining = text;
+    const inlineRegex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/;
+    let key = 0;
+
+    while (remaining) {
+      const match = remaining.match(inlineRegex);
+      if (!match) {
+        parts.push(remaining);
+        break;
       }
+
+      const before = remaining.slice(0, match.index);
+      if (before) parts.push(before);
+
+      if (match[2]) {
+        // **bold**
+        parts.push(<strong key={key++} className="text-slate-100 font-semibold">{match[2]}</strong>);
+      } else if (match[3]) {
+        // *italic*
+        parts.push(<em key={key++} className="text-slate-200">{match[3]}</em>);
+      } else if (match[4]) {
+        // `code`
+        parts.push(<code key={key++} className="bg-white/10 px-1.5 py-0.5 rounded text-sky-300 text-[13px] font-mono">{match[4]}</code>);
+      }
+
+      remaining = remaining.slice(match.index + match[0].length);
+    }
+    return parts;
+  };
+
+  const renderMessage = (text) => {
+    const lines = text.split('\n');
+    const elements = [];
+    let listItems = [];
+    let listType = null; // 'ul' or 'ol'
+
+    const flushList = () => {
+      if (listItems.length > 0) {
+        if (listType === 'ol') {
+          elements.push(<ol key={`ol-${elements.length}`} className="ml-5 mt-2 mb-2 space-y-1.5 list-decimal">{listItems}</ol>);
+        } else {
+          elements.push(<ul key={`ul-${elements.length}`} className="ml-5 mt-2 mb-2 space-y-1.5 list-disc">{listItems}</ul>);
+        }
+        listItems = [];
+        listType = null;
+      }
+    };
+
+    lines.forEach((line, idx) => {
+      const trimmed = line.trim();
+
+      // Skip empty lines but flush any open list
+      if (!trimmed) {
+        flushList();
+        return;
+      }
+
+      // Headers: ## or ###
+      if (trimmed.startsWith('### ')) {
+        flushList();
+        elements.push(<h4 key={idx} className="text-slate-100 font-bold mt-3 mb-1 text-[15px]">{parseInline(trimmed.slice(4))}</h4>);
+        return;
+      }
+      if (trimmed.startsWith('## ')) {
+        flushList();
+        elements.push(<h3 key={idx} className="text-slate-100 font-bold mt-3 mb-1 text-base">{parseInline(trimmed.slice(3))}</h3>);
+        return;
+      }
+      if (trimmed.startsWith('# ')) {
+        flushList();
+        elements.push(<h3 key={idx} className="text-slate-100 font-bold mt-3 mb-1 text-base">{parseInline(trimmed.slice(2))}</h3>);
+        return;
+      }
+
+      // Bullet list: - or *  (at start)
+      const bulletMatch = trimmed.match(/^[-*]\s+(.*)/);
+      if (bulletMatch) {
+        if (listType !== 'ul') flushList();
+        listType = 'ul';
+        listItems.push(<li key={idx}>{parseInline(bulletMatch[1])}</li>);
+        return;
+      }
+
+      // Numbered list: 1. 2. etc.
+      const numMatch = trimmed.match(/^\d+[.)]\s+(.*)/);
+      if (numMatch) {
+        if (listType !== 'ol') flushList();
+        listType = 'ol';
+        listItems.push(<li key={idx}>{parseInline(numMatch[1])}</li>);
+        return;
+      }
+
+      // Regular paragraph
+      flushList();
+      elements.push(<p key={idx} className="mt-1.5">{parseInline(trimmed)}</p>);
     });
+
+    flushList();
+    return elements;
   };
 
   return (
@@ -124,11 +203,12 @@ export default function Chatbot() {
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.05 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 p-4 rounded-2xl bg-gradient-to-r from-sky-500 to-purple-600 text-white shadow-[0_0_30px_rgba(147,51,234,0.4)] z-50 ${isOpen ? 'hidden' : 'block'}`}
+        className={`fixed bottom-6 right-6 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-purple-600 text-white shadow-[0_0_30px_rgba(147,51,234,0.4)] z-50 ${isOpen ? 'hidden' : 'flex'}`}
       >
-        <FaBrain size={28} />
+        <FaBrain size={22} />
+        <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }} className="text-lg font-semibold tracking-wide">veer.ai</span>
       </motion.button>
 
       <AnimatePresence>
@@ -137,7 +217,7 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-6 right-6 w-[90vw] md:w-[450px] h-[80vh] md:h-[600px] bg-[#09090b]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex flex-col z-50 overflow-hidden"
+            className="fixed bottom-6 right-6 w-[92vw] md:w-[520px] h-[85vh] md:h-[680px] bg-[#09090b]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex flex-col z-50 overflow-hidden"
           >
             <div className="flex justify-between items-center p-5 border-b border-white/5 bg-gradient-to-r from-sky-500/10 to-purple-500/10">
               <div className="flex items-center gap-3">
@@ -157,7 +237,7 @@ export default function Chatbot() {
             <div className="flex-1 overflow-y-auto p-5 space-y-5 custom-scrollbar">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
-                  <div className={`max-w-[85%] p-4 rounded-3xl text-sm leading-relaxed ${
+                  <div className={`max-w-[85%] p-4 rounded-3xl text-[15px] leading-relaxed ${
                     msg.isBot 
                       ? 'bg-slate-800/80 text-slate-300 rounded-tl-sm border border-white/5 shadow-md' 
                       : 'bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-tr-sm font-medium shadow-md shadow-sky-500/20'
@@ -168,7 +248,7 @@ export default function Chatbot() {
               ))}
               {isLoading && (
                  <div className="flex justify-start">
-                    <div className="max-w-[85%] p-4 rounded-3xl text-sm bg-slate-800/80 text-slate-300 rounded-tl-sm flex gap-2 items-center">
+                    <div className="max-w-[85%] p-4 rounded-3xl text-[15px] bg-slate-800/80 text-slate-300 rounded-tl-sm flex gap-2 items-center">
                         <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce"></div>
                         <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{animationDelay: '0.2s'}}></div>
                         <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{animationDelay: '0.4s'}}></div>
@@ -196,7 +276,7 @@ export default function Chatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything..."
-                className="flex-1 bg-slate-900 border border-white/10 rounded-2xl px-5 py-3 text-sm text-white focus:outline-none focus:border-sky-500/50 shadow-inner"
+                className="flex-1 bg-slate-900 border border-white/10 rounded-2xl px-5 py-3 text-[15px] text-white focus:outline-none focus:border-sky-500/50 shadow-inner"
               />
               <button 
                 type="submit"
