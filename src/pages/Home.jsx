@@ -29,6 +29,8 @@ export default function Home() {
               2000,
               'AI Security Engineer',
               2000,
+              'ML Infra Engineer',
+              2000,
               'AI Researcher',
               2000,
               'Backend Developer',
