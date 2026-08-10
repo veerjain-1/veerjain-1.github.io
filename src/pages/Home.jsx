@@ -43,44 +43,21 @@ export default function Home() {
         </div>
 
         <p className="text-lg md:text-xl text-slate-300 font-medium leading-relaxed mb-10 max-w-lg">
-          I build state-of-the-art cloud infrastructure, orchestrate Agentic AI, and architect high-performance scalable backend systems. From advanced AI security evaluations at AWS to high-throughput data pipelines.
+          I architect high-performance scalable backend systems, orchestrate Agentic AI, and build state-of-the-art ML infrastructure. From advanced AI security evaluations at AWS to high-throughput data pipelines.
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12">
-          <div className="relative">
-            {/* Pulsing glow ring behind the button */}
-            <motion.div
-              animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.15, 0.4] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 rounded-xl bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 blur-xl"
-            />
-            <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(147,51,234,0.5)" }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => document.dispatchEvent(new CustomEvent('openChatbot'))}
-              className="relative flex items-center gap-3 px-8 py-4 rounded-xl text-white overflow-hidden shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899)' }}
-            >
-              {/* Animated shimmer overlay */}
-              <motion.div
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
-                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
-              />
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <FaBrain size={20} />
-              </motion.div>
-              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-lg font-bold tracking-tight relative">Chat with Veer.ai</span>
-            </motion.button>
-          </div>
           <Link 
             to="/experience"
             className="flex items-center gap-3 px-8 py-4 rounded-xl bg-purple-600/80 hover:bg-purple-500 text-white font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(147,51,234,0.3)]"
           >
             View Experience
+          </Link>
+          <Link 
+            to="/projects"
+            className="flex items-center gap-3 px-8 py-4 rounded-xl bg-sky-600/80 hover:bg-sky-500 text-white font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.3)]"
+          >
+            View Projects
           </Link>
         </div>
         

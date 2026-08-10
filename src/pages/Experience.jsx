@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaBrain } from 'react-icons/fa';
 
 const Card = ({ title, subtitle, children }) => (
   <motion.div 
@@ -75,6 +76,44 @@ export default function Experience() {
           </ul>
         </Card>
       </div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 flex flex-col items-center justify-center text-center space-y-6"
+      >
+        <h3 className="text-2xl font-bold text-slate-200">Want to learn more about my experience?</h3>
+        <div className="relative">
+          {/* Pulsing glow ring behind the button */}
+          <motion.div
+            animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.15, 0.4] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 rounded-xl bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 blur-xl"
+          />
+          <motion.button 
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(147,51,234,0.5)" }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => document.dispatchEvent(new CustomEvent('openChatbot'))}
+            className="relative flex items-center gap-3 px-8 py-4 rounded-xl text-white overflow-hidden shadow-lg"
+            style={{ background: 'linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899)' }}
+          >
+            {/* Animated shimmer overlay */}
+            <motion.div
+              animate={{ x: ['-100%', '200%'] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+              className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
+            />
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <FaBrain size={20} />
+            </motion.div>
+            <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-lg font-bold tracking-tight relative">Chat with Veer.ai</span>
+          </motion.button>
+        </div>
+      </motion.div>
     </div>
   );
 }
