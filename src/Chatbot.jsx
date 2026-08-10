@@ -200,16 +200,37 @@ export default function Chatbot() {
 
   return (
     <>
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.05 }}
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-purple-600 text-white shadow-[0_0_30px_rgba(147,51,234,0.4)] z-50 ${isOpen ? 'hidden' : 'flex'}`}
-      >
-        <FaBrain size={22} />
-        <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-lg font-bold tracking-tight">veer.ai</span>
-      </motion.button>
+      <div className={`fixed bottom-6 right-6 z-50 ${isOpen ? 'hidden' : 'block'}`}>
+        {/* Pulsing glow ring behind the button */}
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.15, 0.4] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 blur-xl"
+        />
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          whileHover={{ scale: 1.08, boxShadow: "0 0 40px rgba(147,51,234,0.6)" }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsOpen(true)}
+          className="relative flex items-center gap-3 px-6 py-3.5 rounded-2xl text-white overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899)' }}
+        >
+          {/* Animated shimmer overlay */}
+          <motion.div
+            animate={{ x: ['-100%', '200%'] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+            className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
+          />
+          <motion.div
+            animate={{ rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <FaBrain size={22} />
+          </motion.div>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-lg font-bold tracking-tight relative">Veer.ai</span>
+        </motion.button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
