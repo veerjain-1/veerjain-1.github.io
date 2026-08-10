@@ -83,8 +83,19 @@ export default function Chatbot() {
 
   useEffect(() => {
     const openChat = () => setIsOpen(true);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+    
     document.addEventListener('openChatbot', openChat);
-    return () => document.removeEventListener('openChatbot', openChat);
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      document.removeEventListener('openChatbot', openChat);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const suggestedPrompts = [
