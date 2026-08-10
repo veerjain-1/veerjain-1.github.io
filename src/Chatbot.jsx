@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaPaperPlane, FaMagic, FaBrain } from 'react-icons/fa';
 
 const BOT_NAME = "veer.ai";
-const API_KEY = "A6VugS2hj4-qbEP_Vt59yjLgRvjkfSuv8WURqTwbXg9J6NR8bA.QA".split('').reverse().join(''); // Added API key safely!
+const PROXY_URL = "https://veer-ai-proxy.veer-ai-proxy.workers.dev";
 
 const SYSTEM_PROMPT = `
 You are veer.ai, an AI assistant representing Veer Jain. You are integrated directly into his portfolio website.
@@ -50,7 +50,7 @@ export default function Chatbot() {
         ]
       };
 
-      const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=" + API_KEY, {
+      const response = await fetch(PROXY_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -208,7 +208,7 @@ export default function Chatbot() {
         className={`fixed bottom-6 right-6 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-purple-600 text-white shadow-[0_0_30px_rgba(147,51,234,0.4)] z-50 ${isOpen ? 'hidden' : 'flex'}`}
       >
         <FaBrain size={22} />
-        <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }} className="text-lg font-semibold tracking-wide">veer.ai</span>
+        <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-lg font-bold tracking-tight">veer.ai</span>
       </motion.button>
 
       <AnimatePresence>
