@@ -223,10 +223,16 @@ export default function Chatbot() {
             className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
           />
           <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            initial={{ rotate: -360 }}
+            animate={{ rotate: 0 }}
+            transition={{ duration: 1, ease: "backOut" }}
           >
-            <FaBrain size={22} />
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+              <FaBrain size={22} />
+            </motion.div>
           </motion.div>
           <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-lg font-bold tracking-tight relative">Veer.ai</span>
         </motion.button>
@@ -238,7 +244,7 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-6 right-6 w-[92vw] md:w-[520px] h-[85vh] md:h-[680px] bg-[#09090b]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex flex-col z-50 overflow-hidden"
+            className="fixed bottom-6 right-6 w-[90vw] md:w-[450px] h-[80vh] md:h-[600px] bg-[#09090b]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex flex-col z-50 overflow-hidden"
           >
             <div className="flex justify-between items-center p-5 border-b border-white/5 bg-gradient-to-r from-sky-500/10 to-purple-500/10">
               <div className="flex items-center gap-3">
