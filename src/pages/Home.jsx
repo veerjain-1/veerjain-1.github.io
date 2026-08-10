@@ -27,17 +27,17 @@ export default function Home() {
             sequence={[
               'Software Engineer',
               2000,
-              'AI Security Engineer',
+              'Agentic AI Architect',
               2000,
               'ML Infra Engineer',
               2000,
-              'AI Researcher',
+              'AI Security Engineer',
               2000,
               'Backend Developer',
               2000,
-              'Agentic AI Architect',
-              2000,
               'Full-Stack Developer',
+              2000,
+              'AI Researcher',
               2000,
             ]}
             wrapper="span"
