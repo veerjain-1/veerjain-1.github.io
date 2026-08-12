@@ -97,7 +97,7 @@ export default function Projects() {
       </ProjectCard>
 
       <ProjectCard
-        title="Finance SLM & RAG"
+        title="Finance Small Language Model (SLM) & RAG"
         subtitle="Python, PyTorch, Hugging Face, MPS"
         link="https://github.com/veerjain-1/finance-slm-rag"
         gifUrl="/finance_app.webp"
