@@ -38,10 +38,10 @@ export default function Experience() {
           subtitle="Amazon Web Services (AWS) · Summer 2026"
         >
           <ul className="list-disc pl-5 space-y-2">
-            <li><strong className="text-white">AI Security & Agent Evals:</strong> Shipped a multi-agent AI Security Analyzer using AWS Bedrock (AgentCore) and AWS CDK, automating vulnerability detection across complex codebases and IaC, reducing security review time by ~8 hours/deployment.</li>
-            <li><strong className="text-white">Adversarial Red-Teaming:</strong> Integrated adversarial red-teaming agents to cross-validate against LLM findings, effectively reducing false-positive alerts in complex IAM permission analysis by over 40% using deterministic evaluation tools.</li>
-            <li>Built an orchestration layer developed for parallelized analysis, utilizing AWS Fargate, API Gateway, and DynamoDB to manage stateful, multi-step security workflows at enterprise scale with low latency.</li>
-            <li>Engineered a closed-loop remediation pipeline integrating ReAct reasoning with an automated PR/ticketing system; implemented an agent evaluation framework with a 90% Precision/Recall threshold to gate production-ready findings.</li>
+            <li><strong className="text-white">AI Security & Agent Evals:</strong> Shipped a multi-agent AI Security Analyzer using AWS Bedrock (AgentCore) and Anthropic models, automating vulnerability detection across complex codebases and IaC, reducing security review time by ~8 hours/deployment.</li>
+            <li><strong className="text-white">Adversarial Red-Teaming:</strong> Integrated adversarial red-teaming agents to cross-validate LLM findings, uncovering Sev-1 vulnerabilities in core infrastructure and reducing false-positive IAM alerts by over 40% through deterministic evaluation tools.</li>
+            <li>Built an orchestration layer developed for parallelized analysis, utilizing AWS Fargate, API Gateway, AWS CDK, and DynamoDB to manage stateful, multi-step security workflows at enterprise scale with low latency.</li>
+            <li>Engineered a closed-loop remediation pipeline integrating ReAct-based reasoning with an automated PR/ticketing system; implemented an agent evaluation framework with a 90% Precision/Recall threshold to gate production-ready findings.</li>
             <li>Designed versioned internal RESTful APIs with request validation and structured error handling through API Gateway, enabling seamless integration of automated security findings into existing developer review workflows.</li>
           </ul>
         </Card>
@@ -51,8 +51,8 @@ export default function Experience() {
           subtitle="Lockheed Martin · Summer 2025"
         >
           <ul className="list-disc pl-5 space-y-2">
-            <li>Architected a scalable ML-inference platform to process large-scale datasets, reducing inference latency and automating model validation pipelines; optimized backend infrastructure to support high-throughput microservices.</li>
-            <li>Designed a data processing pipeline in Python and Spark for real-time streaming, integrating ML inference modules to detect small targets and feed a multi-object tracker over Kafka and SQL, cutting missed detections by 25%.</li>
+            <li>Architected a scalable ML-inference platform for an AI-driven missile prototype, automating validation pipelines and optimizing backend microservices to reduce latency in defense-grade applications.</li>
+            <li>Designed a data processing pipeline in Python and Spark for real-time streaming, integrating ML inference modules to detect distant small targets and feed a multi-object tracker over Kafka and SQL, cutting missed detections by 25%.</li>
             <li>Supported end-to-end ML infrastructure on Azure Machine Learning, training and validating on real-world flight datasets, and automating testing to cut testing from 4 days to 3 hours, utilizing Gitlab CI/CD pipelines.</li>
             <li>Built RESTful microservice endpoints in Python (Flask) to serve model inference results to downstream consumers, with structured JSON response contracts and automated deployment through GitLab CI/CD pipelines.</li>
           </ul>
@@ -63,8 +63,8 @@ export default function Experience() {
           subtitle="Textron Systems · Summer 2024"
         >
           <ul className="list-disc pl-5 space-y-2">
-            <li>Developed ML-based threat detection algorithms utilizing causal inference and unsupervised learning methods. Resolved critical bugs in a Warfare Simulator, leveraging TensorFlow, PyTorch, and MySQL, reduced false positive alerts by 35%.</li>
-            <li>Single-handedly built and deployed an AI-powered NLP tool to automate PDF-to-Excel data extraction, saving 100+ hours monthly and becoming a key company asset.</li>
+            <li>Developed ML-based threat detection algorithms using causal inference and unsupervised learning for a Warfare Simulator; leveraged TensorFlow, PyTorch, and MySQL to resolve critical bugs and reduce false positive alerts by 35%.</li>
+            <li>Collaborated with cross-functional stakeholders to deploy an AI-powered NLP tool, automating data intake processes to save 100+ hours monthly and establish it as a key company asset.</li>
             <li>Designed and optimized normalized MySQL table schemas and indexing strategies for high-frequency sensor telemetry ingestion, reducing analytical query latency on threat-detection dashboards by 30%.</li>
           </ul>
         </Card>

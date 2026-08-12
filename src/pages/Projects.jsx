@@ -75,24 +75,23 @@ export default function Projects() {
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
-          <li>Designed and deployed an autonomous agentic platform using Java (Spring Boot) and LangGraph to intercept high-frequency code commits; automated the orchestration of multi-stage CI/CD build workflows and real-time dependency validation, saving ~15 engineering hours per month.</li>
-          <li>Engineered an event-driven feedback loop via Apache Kafka to trigger recursive testing agents and automated PR comment summaries, reducing human code review latency by 60% within a distributed microservices environment.</li>
-          <li>Built a scalable agent controller that manages stateful workflows across multiple environments; implemented comprehensive observability using Prometheus/Grafana to monitor agent performance.</li>
+          <li>Designed an autonomous CI/CD orchestrator using Java (Spring Boot) and Python-based LangGraph to manage high-frequency code commits; automated multi-stage build workflows and real-time dependency validation, saving ~15 engineering hours/month in grading pipelines.</li>
+          <li>Built an asynchronous backend triggering recursive LLM agents for deep-dive code analysis; utilized message queuing to manage high-volume commits and generate automated, comprehensive PR summaries.</li>
+          <li>Built a scalable agent controller that manages stateful workflows across multiple environments; implemented comprehensive observability using Prometheus/Grafana to monitor agent performance, resource consumption, and deployment reliability.</li>
         </ul>
       </ProjectCard>
 
       <ProjectCard
         title="AI Code Review Platform"
-        subtitle="Node.js, Java, LangChain, MongoDB"
+        subtitle="Python, Git Hooks, Redis, LangChain"
         link="https://github.com/veerjain-1/ai-code-review-platform"
         gifUrl="/codereview_static.png"
         reverse={true}
         onImageClick={setSelectedImage}
       >
         <ul className="list-disc pl-5 space-y-2 text-left">
-          <li>Built a high-scale polyglot microservices backend using Node.js and Java to provide automated AI code reviews for developer clubs, utilizing secure RESTful APIs and LangChain for intelligent feedback loops integrated via Git hooks.</li>
-          <li>Optimized developer SDLC by implementing an asynchronous event-driven architecture with Kafka for real-time processing of pull requests and large-scale metadata extraction, reducing deployment friction through automated gate checks.</li>
-          <li>Engineered robust persistence with MongoDB to store highly nested, dynamic LLM review payloads efficiently without strict relational constraints.</li>
+          <li>Engineered a language-agnostic AI grading assistant for Purdue CS faculty; built a lightweight CLI using local Git hooks to intercept commits, performing static analysis and AI feedback before code leaves the student environment.</li>
+          <li>Reduced grading overhead across 4+ courses by implementing a caching layer (Redis) that stores recurring feedback patterns, ensuring near-instant feedback for students while maintaining high-quality, contextual code reviews.</li>
         </ul>
       </ProjectCard>
 
