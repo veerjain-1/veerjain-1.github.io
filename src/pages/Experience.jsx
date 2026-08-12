@@ -42,6 +42,7 @@ export default function Experience() {
             <li><strong className="text-white">Adversarial Red-Teaming:</strong> Integrated adversarial red-teaming agents to cross-validate against LLM findings, effectively reducing false-positive alerts in complex IAM permission analysis by over 40% using deterministic evaluation tools.</li>
             <li>Built an orchestration layer developed for parallelized analysis, utilizing AWS Fargate, API Gateway, and DynamoDB to manage stateful, multi-step security workflows at enterprise scale with low latency.</li>
             <li>Engineered a closed-loop remediation pipeline integrating ReAct reasoning with an automated PR/ticketing system; implemented an agent evaluation framework with a 90% Precision/Recall threshold to gate production-ready findings.</li>
+            <li>Designed versioned internal RESTful APIs with request validation and structured error handling through API Gateway, enabling seamless integration of automated security findings into existing developer review workflows.</li>
           </ul>
         </Card>
 
@@ -53,6 +54,7 @@ export default function Experience() {
             <li>Architected a scalable ML-inference platform to process large-scale datasets, reducing inference latency and automating model validation pipelines; optimized backend infrastructure to support high-throughput microservices.</li>
             <li>Designed a data processing pipeline in Python and Spark for real-time streaming, integrating ML inference modules to detect small targets and feed a multi-object tracker over Kafka and SQL, cutting missed detections by 25%.</li>
             <li>Supported end-to-end ML infrastructure on Azure Machine Learning, training and validating on real-world flight datasets, and automating testing to cut testing from 4 days to 3 hours, utilizing Gitlab CI/CD pipelines.</li>
+            <li>Built RESTful microservice endpoints in Python (Flask) to serve model inference results to downstream consumers, with structured JSON response contracts and automated deployment through GitLab CI/CD pipelines.</li>
           </ul>
         </Card>
 
@@ -63,6 +65,7 @@ export default function Experience() {
           <ul className="list-disc pl-5 space-y-2">
             <li>Developed ML-based threat detection algorithms utilizing causal inference and unsupervised learning methods. Resolved critical bugs in a Warfare Simulator, leveraging TensorFlow, PyTorch, and MySQL, reduced false positive alerts by 35%.</li>
             <li>Single-handedly built and deployed an AI-powered NLP tool to automate PDF-to-Excel data extraction, saving 100+ hours monthly and becoming a key company asset.</li>
+            <li>Designed and optimized normalized MySQL table schemas and indexing strategies for high-frequency sensor telemetry ingestion, reducing analytical query latency on threat-detection dashboards by 30%.</li>
           </ul>
         </Card>
 
@@ -73,6 +76,7 @@ export default function Experience() {
           <ul className="list-disc pl-5 space-y-2">
             <li>Implemented a Parts Demand Forecasting Tool leveraging Python, Pytorch, and machine learning models to predict demand for part-location combinations, resulting in a 15% reduction in excess inventory.</li>
             <li>Researched supply chain optimization, predictive analysis, time series forecasting methods, and data cleansing.</li>
+            <li>Developed a REST API layer using Flask to serve demand forecast outputs to internal supply chain dashboards, integrating with PostgreSQL for historical parts inventory lookups and scheduled batch data refreshes.</li>
           </ul>
         </Card>
       </div>
