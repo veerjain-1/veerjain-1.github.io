@@ -83,7 +83,7 @@ export default function Projects() {
 
       <ProjectCard
         title="AI Code Review Platform"
-        subtitle="Python, Git Hooks, Redis, LangChain"
+        subtitle="Language Agnostic, Git Hooks, Redis, LangChain"
         link="https://github.com/veerjain-1/ai-code-review-platform"
         gifUrl="/codereview_static.png"
         reverse={true}
