@@ -47,7 +47,7 @@ export default function Home() {
         </div>
 
         <p className="text-lg md:text-xl text-slate-300 font-medium leading-relaxed mb-10 max-w-lg">
-          I design high-performance scalable backend systems, orchestrate Agentic AI, and build production-grade ML infrastructure. From advanced AI security evaluations at AWS to high-throughput data pipelines for real-time ML systems.
+          I design high-performance scalable backend systems, orchestrate Agentic AI, and build production-grade ML infrastructure. My work tackles complex engineering challenges across the stack from advanced AI security evaluations at AWS to high-throughput data pipelines for real-time ML systems.
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12">
