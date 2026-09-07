@@ -29,6 +29,7 @@ export default function Contact() {
         method="POST" 
         className="space-y-6 bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl"
       >
+        <input type="text" name="_gotcha" style={{ display: 'none' }} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
