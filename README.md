@@ -1,16 +1,65 @@
-# React + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# 🌐 Veer Jain — Personal Portfolio & Interactive AI
 
-Currently, two official plugins are available:
+[![Live Site](https://img.shields.io/badge/Live_Site-veerjain--1.github.io-0ea5e9?style=for-the-badge&logo=react&logoColor=white)](https://veerjain-1.github.io/)
+[![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Personal portfolio and interactive engineering showcase built with React, Vite, Framer Motion, and a custom interactive AI assistant.
 
-## React Compiler
+[Explore Live Demo →](https://veerjain-1.github.io/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🚀 Features
+
+- **Interactive AI Chatbot (`Chat with Veer.ai`)**: Floating AI companion capable of answering questions about technical experience, projects, skills, and background in real time.
+- **Dynamic Project Demos**: Interactive lightbox video & GIF walkthroughs for featured systems (`code-anomaly-engine`, `av-drive-triage`, `agentic-cicd-orchestrator`, `finance-slm-rag`).
+- **Responsive Dark-Mode Mesh UI**: Custom glassmorphism, animated mesh background gradients, and micro-interactions powered by Tailwind CSS and Framer Motion.
+- **Automated GitHub Pages Deployment**: Continuous deployment with Vite single-page application routing.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework**: [React 18](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Routing**: [React Router](https://reactrouter.com/) (HashRouter for seamless GitHub Pages routing)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom dark mesh gradients
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [React Icons](https://react-icons.github.io/react-icons/) (FontAwesome, SimpleIcons)
+
+---
+
+## 🏃 Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/veerjain-1/veerjain-1.github.io.git
+cd veerjain-1.github.io
+
+# Install dependencies
+npm install
+
+# Start the local development server
+npm run dev
+```
+
+Visit `http://localhost:5173` to view the site locally.
+
+---
+
+## 📦 Build & Deployment
+
+```bash
+# Production bundle
+npm run build
+
+# Preview build locally
+npm run preview
+```
+
+Automated deployments push the `dist/` bundle directly to GitHub Pages.
