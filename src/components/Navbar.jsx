@@ -44,7 +44,7 @@ export default function Navbar() {
             </NavLink>
           ))}
           <a 
-            href="/Main_Resume.pdf" 
+            href="/Main_Resume.pdf?v=2" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium text-sm border border-white/10 transition-all hover:border-sky-400/30 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]"
@@ -87,7 +87,7 @@ export default function Navbar() {
                 </NavLink>
               ))}
               <a 
-                href="/Main_Resume.pdf" 
+                href="/Main_Resume.pdf?v=2" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
