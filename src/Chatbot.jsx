@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { classifyTopic, trackChatbot, requestChatReply } from './chatbotAnalytics.js';
 import { FaTimes, FaPaperPlane, FaMagic, FaBrain } from 'react-icons/fa';
 
 const BOT_NAME = "Veer.ai";
@@ -28,6 +29,16 @@ export default function Chatbot() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const requestInFlight = useRef(false);
+  const wasOpen = useRef(false);
+  const openSource = useRef('launcher');
+
+  useEffect(() => {
+    if (isOpen && !wasOpen.current) {
+      trackChatbot('chatbot_open', { source: openSource.current });
+    }
+    wasOpen.current = isOpen;
+  }, [isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -37,7 +48,7 @@ export default function Chatbot() {
     scrollToBottom();
   }, [messages]);
 
-  const fetchGeminiResponse = async (userText) => {
+  const fetchGeminiResponse = async (userText, context) => {
     try {
       setIsLoading(true);
       
@@ -50,39 +61,41 @@ export default function Chatbot() {
         ]
       };
 
-      const response = await fetch(PROXY_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+      const reply = await requestChatReply(PROXY_URL, payload, context);
 
-      const data = await response.json();
-      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting to my neural network right now. Please try again later!";
-      
       setMessages(prev => [...prev, { text: reply, isBot: true }]);
-    } catch (error) {
-      console.error(error);
+    } catch {
       setMessages(prev => [...prev, { text: "Sorry, I encountered a network error. You can reach Veer directly via the Contact page!", isBot: true }]);
     } finally {
+      requestInFlight.current = false;
       setIsLoading(false);
     }
   };
 
-  const handleSend = (textInput) => {
+  const handleSend = (textInput, source = 'typed', prompt) => {
     const userMsg = typeof textInput === 'string' ? textInput.trim() : input.trim();
-    if (!userMsg) return;
+    if (!userMsg || requestInFlight.current) return;
+    requestInFlight.current = true;
+    const context = { topic: classifyTopic(userMsg), source };
+    if (prompt) trackChatbot('chatbot_prompt_click', { ...context, prompt });
+    trackChatbot('chatbot_message_sent', context);
 
     setMessages(prev => [...prev, { text: userMsg, isBot: false }]);
     setInput("");
-    fetchGeminiResponse(userMsg);
+    fetchGeminiResponse(userMsg, context);
   };
 
   const handlePromptClick = (promptText) => {
-    handleSend(promptText);
+    const promptIds = {
+      'AWS Experience': 'aws_experience',
+      'Agentic AI Skills': 'agentic_ai_skills',
+      'Fun Facts': 'fun_facts',
+    };
+    handleSend(promptText, 'suggestion', promptIds[promptText]);
   };
 
   useEffect(() => {
-    const openChat = () => setIsOpen(true);
+    const openChat = () => { openSource.current = 'page_cta'; setIsOpen(true); };
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setIsOpen(false);
@@ -223,7 +236,7 @@ export default function Chatbot() {
           animate={{ scale: 1 }}
           whileHover={{ scale: 1.08, boxShadow: "0 0 40px rgba(147,51,234,0.6)" }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setIsOpen(true)}
+          onClick={() => { openSource.current = 'launcher'; setIsOpen(true); }}
           className="relative flex items-center gap-3 px-6 py-3.5 rounded-2xl text-white overflow-hidden"
           style={{ background: 'linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899)' }}
         >
@@ -300,6 +313,7 @@ export default function Chatbot() {
                 {suggestedPrompts.map(prompt => (
                   <button 
                     key={prompt}
+                    disabled={isLoading}
                     onClick={() => handlePromptClick(prompt)}
                     className="whitespace-nowrap px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-sky-300 transition-colors"
                   >
